@@ -3,7 +3,7 @@ Theme Name: Tech-conference-site
 Theme URI: https://github.com/barriefreyre/tech-conference-site
 Author: Barrie Freyre
 Author URI: https://github.com/barriefreyre
-Description: Tema personalizado para DevHorizon 2026, una conferencia de tres días para ingenieros que construyen las interfaces que usamos cada día. Incluye plantillas para home, speakers y schedule, un modal de speaker reutilizable, Custom Post Types para speakers y sesiones, y un importador de contenido.
+Description: Custom theme for DevHorizon 2026, a three-day conference for engineers who build the interfaces we use every day. Includes templates for home, speakers, and schedule, a reusable speaker modal, Custom Post Types for speakers and sessions, and a content importer.
 Version: 1.0.0
 Requires at least: 6.5
 Tested up to: 7.1
@@ -15,7 +15,7 @@ Tags: custom-menu, custom-logo, featured-images, translation-ready, full-width-t
 */
 
 /* ==========================================================================
-   1. FUENTES AUTOALOJADAS
+   1. SELF-HOSTED FONTS
    ========================================================================== */
 
 @font-face {
@@ -47,26 +47,26 @@ Tags: custom-menu, custom-logo, featured-images, translation-ready, full-width-t
    ========================================================================== */
 
 :root {
-  /* Superficies */
+  /* Surfaces */
   --color-surface-terminal: #00151d;
   --color-surface-rail: #001a24;
   --color-surface-dim: #01161e;
   --color-surface-container: #071e26;
   --color-border-dark: #33444a;
 
-  /* Acentos */
+  /* Accents */
   --color-accent-lime: #d1ff66;
   --color-accent-cyan: #b5e9fc;
   --color-accent-biscuit: #ffe6ba;
   --color-accent-danger: #ff8080;
 
-  /* Textos */
+  /* Text */
   --color-text-primary: #fcefe8;
   --color-text-secondary: #c2c5c2;
   --color-text-muted: #6a7b82;
   --color-text-inverse: #00151d;
 
-  /* Tipografía */
+  /* Typography */
   --font-display: 'Chakra Petch', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
@@ -74,7 +74,7 @@ Tags: custom-menu, custom-logo, featured-images, translation-ready, full-width-t
   --max-width-content: 1360px;
   --spacing-container: 40px;
 
-  /* Espaciado */
+  /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -83,25 +83,25 @@ Tags: custom-menu, custom-logo, featured-images, translation-ready, full-width-t
   --space-2xl: 48px;
   --space-3xl: 64px;
 
-  /* Bordes y transiciones */
+  /* Borders and transitions */
   --border-standard: 1px solid var(--color-border-dark);
   --border-subtle: 1px solid #1d323b;
   --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Colores de tracks */
+  /* Track colors */
   --track-keynote: #b5e9fc;
   --track-performance: #fec9c3;
   --track-tooling: #ccc4fd;
   --track-frontend: #ffe6ba;
   --track-accessibility: #bbd8ff;
 
-  /* Colores de tickets de highlights (home) */
+  /* Highlight ticket colors (home) */
   --ticket-rose: #ffb7b9;
   --ticket-yellow: #fde883;
   --ticket-blue: #b4e4f7;
   --ticket-lavender: #cfc4fa;
 
-  /* Semánticos heredados */
+  /* Inherited semantics */
   --bg-main: var(--color-surface-terminal);
   --bg-card: var(--color-surface-container);
   --bg-card-hover: #0c232e;
@@ -125,7 +125,7 @@ Tags: custom-menu, custom-logo, featured-images, translation-ready, full-width-t
 }
 
 /* ==========================================================================
-   3. RESET Y BASE
+   3. RESET AND BASE
    ========================================================================== */
 
 *,
@@ -213,7 +213,7 @@ button {
   outline-offset: 3px;
 }
 
-/* Accesibilidad */
+/* Accessibility */
 .screen-reader-text {
   position: absolute !important;
   width: 1px;
@@ -255,7 +255,7 @@ button {
   white-space: normal;
 }
 
-/* Utilidad de contenedor */
+/* Container utility */
 .container {
   width: 100%;
   max-width: var(--max-width-content);
@@ -266,7 +266,7 @@ button {
 }
 
 /* ==========================================================================
-   4. HEADER Y NAVEGACIÓN
+   4. HEADER AND NAVIGATION
    ========================================================================== */
 
 .site-header {
@@ -480,7 +480,7 @@ button {
 }
 
 /* ==========================================================================
-   6. UTILIDADES COMPARTIDAS
+   6. SHARED UTILITIES
    ========================================================================== */
 
 .section-tag {
@@ -781,7 +781,7 @@ button {
   text-transform: uppercase;
 }
 
-/* Speakers destacados */
+/* Featured speakers */
 .page-home .speakers-section {
   padding-bottom: 4.5rem;
 }
@@ -1515,7 +1515,7 @@ button {
 }
 
 /* ==========================================================================
-   10. MODAL DE SPEAKER
+   10. SPEAKER MODAL
    ========================================================================== */
 
 .modal-backdrop {
@@ -1919,7 +1919,7 @@ button {
 }
 
 /* ==========================================================================
-   11. PÁGINAS GENÉRICAS / FALLBACK
+   11. GENERIC / FALLBACK PAGES
    ========================================================================== */
 
 .default-main {
@@ -2247,7 +2247,7 @@ button {
   }
 }
 
-/* Preferencias de movimiento reducido */
+/* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

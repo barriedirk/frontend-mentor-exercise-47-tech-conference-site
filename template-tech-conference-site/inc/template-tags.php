@@ -1,6 +1,6 @@
 <?php
 /**
- * Helpers de plantilla.
+ * Template helpers.
  *
  * @package Tech_Conference_Site
  */
@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Convierte una hora "H:MM" a minutos desde medianoche.
+ * Converts an "H:MM" time to minutes since midnight.
  *
- * @param string $time Hora.
+ * @param string $time Time.
  * @return int
  */
 function devhorizon_time_to_minutes( $time ) {
@@ -24,9 +24,9 @@ function devhorizon_time_to_minutes( $time ) {
 }
 
 /**
- * Devuelve la URL de una imagen del tema.
+ * Returns the URL of a theme image.
  *
- * @param string $file Nombre o ruta relativa del archivo.
+ * @param string $file File name or relative path.
  * @return string
  */
 function devhorizon_image_url( $file ) {
@@ -34,10 +34,10 @@ function devhorizon_image_url( $file ) {
 }
 
 /**
- * Devuelve el rol y la empresa de un speaker.
+ * Returns a speaker's role and company.
  *
- * @param int  $speaker_id ID del speaker.
- * @param bool $spaced     Usar espacios alrededor de la arroba.
+ * @param int  $speaker_id Speaker ID.
+ * @param bool $spaced     Whether to use spaces around the at sign.
  * @return string
  */
 function devhorizon_speaker_affiliation( $speaker_id, $spaced = false ) {
@@ -53,9 +53,9 @@ function devhorizon_speaker_affiliation( $speaker_id, $spaced = false ) {
 }
 
 /**
- * Devuelve la empresa de un speaker.
+ * Returns a speaker's company.
  *
- * @param int $speaker_id ID del speaker.
+ * @param int $speaker_id Speaker ID.
  * @return string
  */
 function devhorizon_speaker_company( $speaker_id ) {
@@ -63,10 +63,10 @@ function devhorizon_speaker_company( $speaker_id ) {
 }
 
 /**
- * Devuelve la URL de la foto de un speaker.
+ * Returns the URL of a speaker's photo.
  *
- * @param int    $speaker_id ID del speaker.
- * @param string $size       Tamaño de imagen.
+ * @param int    $speaker_id Speaker ID.
+ * @param string $size       Image size.
  * @return string
  */
 function devhorizon_speaker_photo_url( $speaker_id, $size = 'devhorizon-avatar' ) {
@@ -81,11 +81,11 @@ function devhorizon_speaker_photo_url( $speaker_id, $size = 'devhorizon-avatar' 
 }
 
 /**
- * Devuelve el HTML de la foto de un speaker.
+ * Returns the HTML for a speaker's photo.
  *
- * @param int    $speaker_id ID del speaker.
- * @param string $size       Tamaño de imagen.
- * @param string $class      Clase CSS de la imagen.
+ * @param int    $speaker_id Speaker ID.
+ * @param string $size       Image size.
+ * @param string $class      Image CSS class.
  * @return string
  */
 function devhorizon_speaker_photo_html( $speaker_id, $size = 'devhorizon-speaker', $class = 'speaker-card-img' ) {
@@ -114,9 +114,9 @@ function devhorizon_speaker_photo_html( $speaker_id, $size = 'devhorizon-speaker
 }
 
 /**
- * Devuelve el primer track de una sesión.
+ * Returns the first track of a session.
  *
- * @param int $session_id ID de la sesión.
+ * @param int $session_id Session ID.
  * @return WP_Term|null
  */
 function devhorizon_session_track( $session_id ) {
@@ -130,9 +130,9 @@ function devhorizon_session_track( $session_id ) {
 }
 
 /**
- * Devuelve el ID del speaker de una sesión.
+ * Returns the speaker ID for a session.
  *
- * @param int $session_id ID de la sesión.
+ * @param int $session_id Session ID.
  * @return int
  */
 function devhorizon_session_speaker_id( $session_id ) {
@@ -140,9 +140,9 @@ function devhorizon_session_speaker_id( $session_id ) {
 }
 
 /**
- * Devuelve el nombre del speaker de una sesión.
+ * Returns the speaker name for a session.
  *
- * @param int $session_id ID de la sesión.
+ * @param int $session_id Session ID.
  * @return string
  */
 function devhorizon_session_speaker_name( $session_id ) {
@@ -152,9 +152,9 @@ function devhorizon_session_speaker_name( $session_id ) {
 }
 
 /**
- * Devuelve la empresa del speaker de una sesión.
+ * Returns the speaker company for a session.
  *
- * @param int $session_id ID de la sesión.
+ * @param int $session_id Session ID.
  * @return string
  */
 function devhorizon_session_company( $session_id ) {
@@ -162,9 +162,9 @@ function devhorizon_session_company( $session_id ) {
 }
 
 /**
- * Devuelve el nombre visible del track de una sesión.
+ * Returns the visible track name for a session.
  *
- * @param int $session_id ID de la sesión.
+ * @param int $session_id Session ID.
  * @return string
  */
 function devhorizon_session_track_name( $session_id ) {
@@ -174,9 +174,9 @@ function devhorizon_session_track_name( $session_id ) {
 }
 
 /**
- * Devuelve el slug del track de una sesión.
+ * Returns the track slug for a session.
  *
- * @param int $session_id ID de la sesión.
+ * @param int $session_id Session ID.
  * @return string
  */
 function devhorizon_session_track_slug( $session_id ) {
@@ -186,9 +186,9 @@ function devhorizon_session_track_slug( $session_id ) {
 }
 
 /**
- * Indica si una sesión tiene contenido desplegable.
+ * Determines whether a session has expandable content.
  *
- * @param int $session_id ID de la sesión.
+ * @param int $session_id Session ID.
  * @return bool
  */
 function devhorizon_session_has_details( $session_id ) {
@@ -199,9 +199,9 @@ function devhorizon_session_has_details( $session_id ) {
 }
 
 /**
- * Devuelve el ID del bloque de detalles de una sesión.
+ * Returns the details block ID for a session.
  *
- * @param int $session_id ID de la sesión.
+ * @param int $session_id Session ID.
  * @return string
  */
 function devhorizon_session_details_id( $session_id ) {
@@ -209,9 +209,9 @@ function devhorizon_session_details_id( $session_id ) {
 }
 
 /**
- * Devuelve la etiqueta de fecha de un día del evento.
+ * Returns the date label for an event day.
  *
- * @param int $day Día 1, 2 o 3.
+ * @param int $day Day 1, 2, or 3.
  * @return string
  */
 function devhorizon_event_date_label( $day ) {
@@ -225,9 +225,9 @@ function devhorizon_event_date_label( $day ) {
 }
 
 /**
- * Devuelve la clase de color de un highlight de home.
+ * Returns the color class for a home highlight.
  *
- * @param string $track_slug Slug del track.
+ * @param string $track_slug Track slug.
  * @return string
  */
 function devhorizon_highlight_class( $track_slug ) {
@@ -243,9 +243,9 @@ function devhorizon_highlight_class( $track_slug ) {
 }
 
 /**
- * Devuelve la etiqueta corta de un filtro de track.
+ * Returns the short label for a track filter.
  *
- * @param string $slug Slug del track.
+ * @param string $slug Track slug.
  * @return string
  */
 function devhorizon_track_filter_label( $slug ) {
@@ -257,7 +257,7 @@ function devhorizon_track_filter_label( $slug ) {
 }
 
 /**
- * Devuelve el SVG del código de barras de los tickets.
+ * Returns the ticket barcode SVG.
  *
  * @return string
  */
@@ -280,9 +280,9 @@ function devhorizon_barcode_svg() {
 }
 
 /**
- * Devuelve los atributos data-* del modal para una tarjeta de speaker.
+ * Returns the modal data-* attributes for a speaker card.
  *
- * @param int $speaker_id ID del speaker.
+ * @param int $speaker_id Speaker ID.
  * @return string
  */
 function devhorizon_speaker_modal_attrs( $speaker_id ) {

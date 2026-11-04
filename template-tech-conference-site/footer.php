@@ -1,6 +1,6 @@
 <?php
 /**
- * Pie de página del tema.
+ * Theme footer.
  *
  * @package Tech_Conference_Site
  */
@@ -38,7 +38,7 @@ $devhorizon_tracks = devhorizon_get_tracks( array( 'keynote' ) );
 							</li>
 						<?php endforeach; ?>
 					<?php else : ?>
-						<li><?php esc_html_e( 'Tracks por anunciar', 'tech-conference-site' ); ?></li>
+						<li><?php esc_html_e( 'Tracks to be announced', 'tech-conference-site' ); ?></li>
 					<?php endif; ?>
 				</ul>
 			</div>

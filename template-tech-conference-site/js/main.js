@@ -1,12 +1,12 @@
 /**
- * DevHorizon 2026 — interacción del tema.
+ * DevHorizon 2026 — theme interactions.
  *
- * Incluye:
- * - Menú móvil accesible.
- * - Modal de speaker reutilizable.
- * - Toggles de detalles.
- * - Filtros de día y track.
- * - Bookmarks persistentes en localStorage.
+ * Includes:
+ * - Accessible mobile menu.
+ * - Reusable speaker modal.
+ * - Details toggles.
+ * - Day and track filters.
+ * - Bookmarks persisted in localStorage.
  */
 (() => {
   'use strict';
@@ -29,7 +29,7 @@
     try {
       window.localStorage.setItem(BOOKMARK_KEY, JSON.stringify(bookmarks));
     } catch (error) {
-      // Si localStorage no está disponible, la UI sigue funcionando en memoria.
+      // If localStorage is unavailable, the UI keeps working in memory.
     }
   };
 
@@ -49,7 +49,7 @@
       button.classList.toggle('is-saved', saved);
       button.classList.toggle('saved', saved);
       button.setAttribute('aria-pressed', String(saved));
-      button.setAttribute('aria-label', saved ? 'Quitar de mi horario' : 'Guardar en mi horario');
+      button.setAttribute('aria-label', saved ? 'Remove from my schedule' : 'Save to my schedule');
 
       if (button.classList.contains('btn-star')) {
         button.textContent = saved ? '★' : '☆';
@@ -78,7 +78,7 @@
   };
 
   /* -----------------------------------------------------------------------
-   * Menú móvil
+   * Mobile menu
    * --------------------------------------------------------------------- */
   const menuToggle = doc.getElementById('menuToggle');
   const mobileDrawer = doc.getElementById('mobileDrawer');
@@ -87,7 +87,7 @@
     const setMenuOpen = (open, restoreFocus = false) => {
       mobileDrawer.classList.toggle('is-open', open);
       menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+      menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
 
       if (open) {
         const firstLink = mobileDrawer.querySelector('a');
@@ -127,7 +127,7 @@
   }
 
   /* -----------------------------------------------------------------------
-   * Toggles de detalles de las sesiones
+   * Session details toggles
    * --------------------------------------------------------------------- */
   doc.addEventListener('click', (event) => {
     const toggle = event.target.closest('[data-details-toggle]');
@@ -167,7 +167,7 @@
   });
 
   /* -----------------------------------------------------------------------
-   * Filtros del schedule
+   * Schedule filters
    * --------------------------------------------------------------------- */
   const filterBar = doc.querySelector('.page-schedule .filter-bar');
 
@@ -253,7 +253,7 @@
       button.addEventListener('click', () => {
         const day = Number.parseInt(button.dataset.filterDay, 10);
 
-        // Al elegir un día concreto se sale del modo "mi horario".
+        // Selecting a specific day exits "my schedule" mode.
         mineOnly = false;
         activeDay = activeDay === day ? 0 : day;
         refresh();
@@ -271,7 +271,7 @@
     if (mineButton) {
       mineButton.addEventListener('click', () => {
         mineOnly = !mineOnly;
-        // "Mi horario" muestra los bookmarks de todos los días.
+        // "My schedule" shows bookmarks from all days.
         activeDay = mineOnly ? 0 : 1;
         refresh();
       });
@@ -297,7 +297,7 @@
   }
 
   /* -----------------------------------------------------------------------
-   * Modal de speaker
+   * Speaker modal
    * --------------------------------------------------------------------- */
   const modal = doc.getElementById('speakerModal');
 

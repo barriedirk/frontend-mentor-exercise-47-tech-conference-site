@@ -1,54 +1,54 @@
 # Tech-conference-site
 
-Tema WordPress personalizado para **DevHorizon 2026**, construido a partir del diseño estático de Frontend Mentor y del sistema de diseño `design.md_cyber_industrial_terminal.md`.
+Custom WordPress theme for **DevHorizon 2026**, built from the Frontend Mentor static design and the `design.md_cyber_industrial_terminal.en.md` design system.
 
-## Requisitos
+## Requirements
 
-- WordPress 6.5 o superior.
-- PHP 7.4 o superior.
-- Sin plugins obligatorios.
+- WordPress 6.5 or higher.
+- PHP 7.4 or higher.
+- No required plugins.
 
-## Instalación
+## Installation
 
-1. Copia esta carpeta en `wp-content/themes/tech-conference-site`.
-2. Activa el tema en **Apariencia → Temas**.
-3. Ve a **Herramientas → Importar DevHorizon** y pulsa **Importar contenido DevHorizon**.
-4. Crea tres páginas:
-   - `Home` con la plantilla **Home - DevHorizon**.
-   - `Speakers` con la plantilla **Speakers - DevHorizon**.
-   - `Schedule` con la plantilla **Schedule - DevHorizon**.
-5. En **Ajustes → Lectura**, selecciona `Home` como página de portada estática.
-6. En **Ajustes → Enlaces permanentes**, elige una estructura distinta de “Simple”, por ejemplo `/%postname%/`.
-7. En **Apariencia → Menús**, crea un menú con Home, Schedule y Speakers y asígnalo a la ubicación **Menú Principal**.
+1. Copy this folder to `wp-content/themes/tech-conference-site`.
+2. Activate the theme under **Appearance → Themes**.
+3. Go to **Tools → Import DevHorizon** and click **Import DevHorizon content**.
+4. Create three pages:
+   - `Home` with the **Home - DevHorizon** template.
+   - `Speakers` with the **Speakers - DevHorizon** template.
+   - `Schedule` with the **Schedule - DevHorizon** template.
+5. Under **Settings → Reading**, select `Home` as the static front page.
+6. Under **Settings → Permalinks**, choose a structure other than "Plain", for example `/%postname%/`.
+7. Under **Appearance → Menus**, create a menu with Home, Schedule, and Speakers, and assign it to the **Primary Menu** location.
 
-Si el menú aún no existe, el tema muestra un fallback con esos tres enlaces.
+If the menu does not exist yet, the theme displays a fallback with those three links.
 
-## Contenido
+## Content
 
-El tema registra dos Custom Post Types internos:
+The theme registers two internal Custom Post Types:
 
 ### Speakers
 
-- Nombre: título.
-- Biografía: editor.
-- Foto: imagen destacada.
-- Rol y empresa: metabox **Datos del speaker**.
-- Destacado en la home: checkbox del metabox.
-- Orden: atributo **Orden** de la página.
+- Name: title.
+- Bio: editor.
+- Photo: featured image.
+- Role and company: **Speaker details** metabox.
+- Featured on the home page: metabox checkbox.
+- Order: page **Order** attribute.
 
-### Sesiones
+### Sessions
 
-- Título de la charla: título.
-- Descripción: editor.
-- Speaker: selector del metabox.
-- Día, horas y localización: metabox **Datos de la sesión**.
-- Track: taxonomía **Tracks**.
-- Destacada en la home: checkbox del metabox.
-- Orden: atributo **Orden** de la página.
+- Talk title: title.
+- Description: editor.
+- Speaker: metabox selector.
+- Day, times, and location: **Session details** metabox.
+- Track: **Tracks** taxonomy.
+- Featured on the home page: metabox checkbox.
+- Order: page **Order** attribute.
 
 ### Tracks
 
-Taxonomía `devhorizon_track` con los términos:
+`devhorizon_track` taxonomy with the terms:
 
 - Keynote
 - Frontend
@@ -56,19 +56,19 @@ Taxonomía `devhorizon_track` con los términos:
 - Accessibility
 - Tooling
 
-## Importador
+## Importer
 
-El importador lee `data/devhorizon-data.json` y:
+The importer reads `data/devhorizon-data.json` and:
 
-- crea o actualiza los 5 tracks,
-- crea o actualiza los 20 speakers,
-- sube los 20 avatares a la Media Library y los asigna como imagen destacada,
-- crea o actualiza las 20 sesiones,
-- asigna speaker, track, día, horas, localización y flags de destacado.
+- creates or updates the 5 tracks,
+- creates or updates the 20 speakers,
+- uploads the 20 avatars to the Media Library and assigns them as featured images,
+- creates or updates the 20 sessions,
+- assigns speaker, track, day, times, location, and featured flags.
 
-Es idempotente: se puede ejecutar varias veces sin duplicar contenido.
+It is idempotent: it can be run multiple times without duplicating content.
 
-## Estructura
+## Structure
 
 ```text
 .
@@ -99,25 +99,25 @@ Es idempotente: se puede ejecutar varias veces sin duplicar contenido.
 └── home/, speakers/, schedule/, modal-component/
 ```
 
-Las carpetas `home/`, `speakers/`, `schedule/` y `modal-component/` son los archivos estáticos originales y se conservan como referencia. No se cargan en WordPress.
+The `home/`, `speakers/`, `schedule/`, and `modal-component/` folders are the original static files and are kept as a reference. They are not loaded by WordPress.
 
-## Interacción
+## Interaction
 
-- Menú móvil accesible con `aria-expanded`.
-- Modal de speaker relleno desde atributos `data-*`.
-- Cierre con botón, backdrop y `Escape`; trampa de foco y retorno al elemento que abrió el modal.
-- Toggles de detalles en la home y en el schedule.
-- Filtros de día y track.
-- Enlaces directos `?day=2` y `?track=frontend`.
-- “MY SCHEDULE” muestra los bookmarks de todos los días; al elegir un día concreto se sale de ese modo.
-- “CLEAR” limpia los filtros y vuelve al día 1 sin borrar los bookmarks.
-- Bookmarks persistentes en `localStorage` con la clave `devhorizon:bookmarks`.
+- Accessible mobile menu with `aria-expanded`.
+- Speaker modal populated from `data-*` attributes.
+- Close with the button, backdrop, and `Escape`; focus trap and return to the element that opened the modal.
+- Details toggles on the home page and schedule.
+- Day and track filters.
+- Direct links `?day=2` and `?track=frontend`.
+- "MY SCHEDULE" shows bookmarks from all days; selecting a specific day exits that mode.
+- "CLEAR" clears the filters and returns to day 1 without deleting bookmarks.
+- Bookmarks persisted in `localStorage` under the `devhorizon:bookmarks` key.
 
-## Personalización rápida
+## Quick customization
 
-### Colores y tipografía
+### Colors and typography
 
-Todos los tokens están en `style.css`, dentro de `:root`:
+All tokens are in `style.css`, inside `:root`:
 
 ```css
 --color-surface-terminal: #00151d;
@@ -129,26 +129,26 @@ Todos los tokens están en `style.css`, dentro de `:root`:
 --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 ```
 
-### Imágenes
+### Images
 
-Las imágenes del tema viven en `images/`. Las tarjetas usan la imagen destacada del speaker; si no existe, se usa `images/pattern-avatar-bg.svg` como fallback.
+Theme images live in `images/`. Cards use the speaker's featured image; if none exists, `images/pattern-avatar-bg.svg` is used as a fallback.
 
-### Fuentes
+### Fonts
 
-Las fuentes están autoalojadas en `fonts/`:
+Fonts are self-hosted in `fonts/`:
 
-- Chakra Petch (SemiBold y Bold).
+- Chakra Petch (SemiBold and Bold).
 - JetBrains Mono Variable.
 
-Las licencias OFL están incluidas en cada carpeta.
+The OFL licenses are included in each folder.
 
-## Validación
+## Validation
 
 ```bash
-# Sintaxis PHP
+# PHP syntax
 find . -name '*.php' -not -path './home/*' -not -path './speakers/*' \
   -not -path './schedule/*' -not -path './modal-component/*' -exec php -l {} \;
 
-# Comprobar que las imágenes referenciadas existen
+# Check that referenced images exist
 grep -Rho "avatar-[a-z-]*\.webp" --include='*.php' . | sort -u
 ```

@@ -1,6 +1,6 @@
 <?php
 /**
- * Consultas reutilizables.
+ * Reusable queries.
  *
  * @package Tech_Conference_Site
  */
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Devuelve todos los speakers publicados.
+ * Returns all published speakers.
  *
  * @return WP_Query
  */
@@ -31,9 +31,9 @@ function devhorizon_get_all_speakers() {
 }
 
 /**
- * Devuelve los speakers destacados de la home.
+ * Returns the featured speakers for the home page.
  *
- * @param int $limit Número máximo.
+ * @param int $limit Maximum number.
  * @return WP_Query
  */
 function devhorizon_get_featured_speakers( $limit = 8 ) {
@@ -55,9 +55,9 @@ function devhorizon_get_featured_speakers( $limit = 8 ) {
 }
 
 /**
- * Devuelve las sesiones ordenadas por día y hora.
+ * Returns sessions ordered by day and time.
  *
- * @param array $args Argumentos adicionales de WP_Query.
+ * @param array $args Additional WP_Query arguments.
  * @return WP_Query
  */
 function devhorizon_get_sessions( $args = array() ) {
@@ -88,9 +88,9 @@ function devhorizon_get_sessions( $args = array() ) {
 }
 
 /**
- * Devuelve las sesiones destacadas de la home.
+ * Returns the featured sessions for the home page.
  *
- * @param int $limit Número máximo.
+ * @param int $limit Maximum number.
  * @return WP_Query
  */
 function devhorizon_get_highlighted_sessions( $limit = 4 ) {
@@ -112,7 +112,7 @@ function devhorizon_get_highlighted_sessions( $limit = 4 ) {
 }
 
 /**
- * Devuelve la sesión keynote del evento.
+ * Returns the event keynote session.
  *
  * @return WP_Post|null
  */
@@ -139,9 +139,9 @@ function devhorizon_get_keynote_session() {
 }
 
 /**
- * Devuelve la primera sesión de un speaker.
+ * Returns a speaker's first session.
  *
- * @param int $speaker_id ID del speaker.
+ * @param int $speaker_id Speaker ID.
  * @return WP_Post|null
  */
 function devhorizon_get_speaker_session( $speaker_id ) {
@@ -187,9 +187,9 @@ function devhorizon_get_speaker_session( $speaker_id ) {
 }
 
 /**
- * Devuelve los tracks ordenados.
+ * Returns the sorted tracks.
  *
- * @param string[] $exclude Slugs a excluir.
+ * @param string[] $exclude Slugs to exclude.
  * @return WP_Term[]
  */
 function devhorizon_get_tracks( $exclude = array() ) {

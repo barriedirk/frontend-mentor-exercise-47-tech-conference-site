@@ -1,6 +1,6 @@
 <?php
 /**
- * Fallback genérico del tema.
+ * Generic theme fallback.
  *
  * @package Tech_Conference_Site
  */
@@ -24,7 +24,7 @@ get_header();
 		<?php endwhile; ?>
 	<?php else : ?>
 		<h1 class="page-title"><?php esc_html_e( '// nothing_found', 'tech-conference-site' ); ?></h1>
-		<p class="empty-state"><?php esc_html_e( 'No hay contenido para mostrar.', 'tech-conference-site' ); ?></p>
+		<p class="empty-state"><?php esc_html_e( 'No content to display.', 'tech-conference-site' ); ?></p>
 	<?php endif; ?>
 </main>
 <?php
