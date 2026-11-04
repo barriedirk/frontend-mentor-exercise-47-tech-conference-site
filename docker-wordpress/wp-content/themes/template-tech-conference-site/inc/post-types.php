@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom Post Types y taxonomía de DevHorizon.
+ * DevHorizon Custom Post Types and taxonomy.
  *
  * @package Tech_Conference_Site
  */
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registra los CPT internos de speakers y sesiones.
+ * Registers the internal speaker and session CPTs.
  */
 function devhorizon_register_post_types() {
 	$speaker_labels = array(
@@ -18,19 +18,19 @@ function devhorizon_register_post_types() {
 		'singular_name'         => __( 'Speaker', 'tech-conference-site' ),
 		'menu_name'             => __( 'Speakers', 'tech-conference-site' ),
 		'name_admin_bar'        => __( 'Speaker', 'tech-conference-site' ),
-		'add_new'               => __( 'Añadir nuevo', 'tech-conference-site' ),
-		'add_new_item'          => __( 'Añadir speaker', 'tech-conference-site' ),
-		'new_item'              => __( 'Nuevo speaker', 'tech-conference-site' ),
-		'edit_item'             => __( 'Editar speaker', 'tech-conference-site' ),
-		'view_item'             => __( 'Ver speaker', 'tech-conference-site' ),
-		'all_items'             => __( 'Todos los speakers', 'tech-conference-site' ),
-		'search_items'          => __( 'Buscar speakers', 'tech-conference-site' ),
-		'not_found'             => __( 'No se han encontrado speakers.', 'tech-conference-site' ),
-		'not_found_in_trash'    => __( 'No hay speakers en la papelera.', 'tech-conference-site' ),
-		'featured_image'        => __( 'Foto del speaker', 'tech-conference-site' ),
-		'set_featured_image'    => __( 'Establecer foto', 'tech-conference-site' ),
-		'remove_featured_image' => __( 'Quitar foto', 'tech-conference-site' ),
-		'use_featured_image'    => __( 'Usar como foto del speaker', 'tech-conference-site' ),
+		'add_new'               => __( 'Add New', 'tech-conference-site' ),
+		'add_new_item'          => __( 'Add New Speaker', 'tech-conference-site' ),
+		'new_item'              => __( 'New Speaker', 'tech-conference-site' ),
+		'edit_item'             => __( 'Edit Speaker', 'tech-conference-site' ),
+		'view_item'             => __( 'View Speaker', 'tech-conference-site' ),
+		'all_items'             => __( 'All Speakers', 'tech-conference-site' ),
+		'search_items'          => __( 'Search Speakers', 'tech-conference-site' ),
+		'not_found'             => __( 'No speakers found.', 'tech-conference-site' ),
+		'not_found_in_trash'    => __( 'No speakers found in Trash.', 'tech-conference-site' ),
+		'featured_image'        => __( 'Speaker Photo', 'tech-conference-site' ),
+		'set_featured_image'    => __( 'Set featured image', 'tech-conference-site' ),
+		'remove_featured_image' => __( 'Remove featured image', 'tech-conference-site' ),
+		'use_featured_image'    => __( 'Use as speaker photo', 'tech-conference-site' ),
 	);
 
 	register_post_type(
@@ -57,19 +57,19 @@ function devhorizon_register_post_types() {
 	);
 
 	$session_labels = array(
-		'name'               => __( 'Sesiones', 'tech-conference-site' ),
-		'singular_name'      => __( 'Sesión', 'tech-conference-site' ),
-		'menu_name'          => __( 'Sesiones', 'tech-conference-site' ),
-		'name_admin_bar'     => __( 'Sesión', 'tech-conference-site' ),
-		'add_new'            => __( 'Añadir nueva', 'tech-conference-site' ),
-		'add_new_item'       => __( 'Añadir sesión', 'tech-conference-site' ),
-		'new_item'           => __( 'Nueva sesión', 'tech-conference-site' ),
-		'edit_item'          => __( 'Editar sesión', 'tech-conference-site' ),
-		'view_item'          => __( 'Ver sesión', 'tech-conference-site' ),
-		'all_items'          => __( 'Todas las sesiones', 'tech-conference-site' ),
-		'search_items'       => __( 'Buscar sesiones', 'tech-conference-site' ),
-		'not_found'          => __( 'No se han encontrado sesiones.', 'tech-conference-site' ),
-		'not_found_in_trash' => __( 'No hay sesiones en la papelera.', 'tech-conference-site' ),
+		'name'               => __( 'Sessions', 'tech-conference-site' ),
+		'singular_name'      => __( 'Session', 'tech-conference-site' ),
+		'menu_name'          => __( 'Sessions', 'tech-conference-site' ),
+		'name_admin_bar'     => __( 'Session', 'tech-conference-site' ),
+		'add_new'            => __( 'Add New', 'tech-conference-site' ),
+		'add_new_item'       => __( 'Add New Session', 'tech-conference-site' ),
+		'new_item'           => __( 'New Session', 'tech-conference-site' ),
+		'edit_item'          => __( 'Edit Session', 'tech-conference-site' ),
+		'view_item'          => __( 'View Session', 'tech-conference-site' ),
+		'all_items'          => __( 'All Sessions', 'tech-conference-site' ),
+		'search_items'       => __( 'Search Sessions', 'tech-conference-site' ),
+		'not_found'          => __( 'No sessions found.', 'tech-conference-site' ),
+		'not_found_in_trash' => __( 'No sessions found in Trash.', 'tech-conference-site' ),
 	);
 
 	register_post_type(
@@ -98,20 +98,20 @@ function devhorizon_register_post_types() {
 add_action( 'init', 'devhorizon_register_post_types' );
 
 /**
- * Registra la taxonomía de tracks.
+ * Registers the tracks taxonomy.
  */
 function devhorizon_register_taxonomies() {
 	$labels = array(
 		'name'              => __( 'Tracks', 'tech-conference-site' ),
 		'singular_name'     => __( 'Track', 'tech-conference-site' ),
-		'search_items'      => __( 'Buscar tracks', 'tech-conference-site' ),
-		'all_items'         => __( 'Todos los tracks', 'tech-conference-site' ),
-		'parent_item'       => __( 'Track padre', 'tech-conference-site' ),
-		'parent_item_colon' => __( 'Track padre:', 'tech-conference-site' ),
-		'edit_item'         => __( 'Editar track', 'tech-conference-site' ),
-		'update_item'       => __( 'Actualizar track', 'tech-conference-site' ),
-		'add_new_item'      => __( 'Añadir track', 'tech-conference-site' ),
-		'new_item_name'     => __( 'Nuevo track', 'tech-conference-site' ),
+		'search_items'      => __( 'Search Tracks', 'tech-conference-site' ),
+		'all_items'         => __( 'All Tracks', 'tech-conference-site' ),
+		'parent_item'       => __( 'Parent Track', 'tech-conference-site' ),
+		'parent_item_colon' => __( 'Parent Track:', 'tech-conference-site' ),
+		'edit_item'         => __( 'Edit Track', 'tech-conference-site' ),
+		'update_item'       => __( 'Update Track', 'tech-conference-site' ),
+		'add_new_item'      => __( 'Add New Track', 'tech-conference-site' ),
+		'new_item_name'     => __( 'New Track', 'tech-conference-site' ),
 		'menu_name'         => __( 'Tracks', 'tech-conference-site' ),
 	);
 
@@ -136,7 +136,7 @@ function devhorizon_register_taxonomies() {
 add_action( 'init', 'devhorizon_register_taxonomies' );
 
 /**
- * Registra metadatos de los tracks.
+ * Registers track metadata.
  */
 function devhorizon_register_term_meta() {
 	register_term_meta(
@@ -164,9 +164,9 @@ function devhorizon_register_term_meta() {
 add_action( 'init', 'devhorizon_register_term_meta' );
 
 /**
- * Columnas del listado de speakers.
+ * Speaker list columns.
  *
- * @param array $columns Columnas originales.
+ * @param array $columns Original columns.
  * @return array
  */
 function devhorizon_speaker_columns( $columns ) {
@@ -176,9 +176,9 @@ function devhorizon_speaker_columns( $columns ) {
 		$new_columns[ $key ] = $label;
 
 		if ( 'title' === $key ) {
-			$new_columns['speaker_photo']    = __( 'Foto', 'tech-conference-site' );
-			$new_columns['speaker_role']     = __( 'Rol', 'tech-conference-site' );
-			$new_columns['speaker_featured'] = __( 'Destacado', 'tech-conference-site' );
+			$new_columns['speaker_photo']    = __( 'Photo', 'tech-conference-site' );
+			$new_columns['speaker_role']     = __( 'Role', 'tech-conference-site' );
+			$new_columns['speaker_featured'] = __( 'Featured', 'tech-conference-site' );
 		}
 	}
 
@@ -187,10 +187,10 @@ function devhorizon_speaker_columns( $columns ) {
 add_filter( 'manage_devhorizon_speaker_posts_columns', 'devhorizon_speaker_columns' );
 
 /**
- * Contenido de las columnas de speakers.
+ * Speaker column content.
  *
- * @param string $column  Columna.
- * @param int    $post_id ID del post.
+ * @param string $column  Column.
+ * @param int    $post_id Post ID.
  */
 function devhorizon_speaker_column_content( $column, $post_id ) {
 	if ( 'speaker_photo' === $column ) {
@@ -206,15 +206,15 @@ function devhorizon_speaker_column_content( $column, $post_id ) {
 	}
 
 	if ( 'speaker_featured' === $column ) {
-		echo get_post_meta( $post_id, '_devhorizon_featured', true ) ? esc_html__( 'Sí', 'tech-conference-site' ) : '&mdash;';
+		echo get_post_meta( $post_id, '_devhorizon_featured', true ) ? esc_html__( 'Yes', 'tech-conference-site' ) : '&mdash;';
 	}
 }
 add_action( 'manage_devhorizon_speaker_posts_custom_column', 'devhorizon_speaker_column_content', 10, 2 );
 
 /**
- * Columnas del listado de sesiones.
+ * Session list columns.
  *
- * @param array $columns Columnas originales.
+ * @param array $columns Original columns.
  * @return array
  */
 function devhorizon_session_columns( $columns ) {
@@ -225,10 +225,10 @@ function devhorizon_session_columns( $columns ) {
 
 		if ( 'title' === $key ) {
 			$new_columns['session_speaker']   = __( 'Speaker', 'tech-conference-site' );
-			$new_columns['session_day']       = __( 'Día', 'tech-conference-site' );
-			$new_columns['session_time']      = __( 'Hora', 'tech-conference-site' );
+			$new_columns['session_day']       = __( 'Day', 'tech-conference-site' );
+			$new_columns['session_time']      = __( 'Time', 'tech-conference-site' );
 			$new_columns['session_track']     = __( 'Track', 'tech-conference-site' );
-			$new_columns['session_highlight'] = __( 'Destacada', 'tech-conference-site' );
+			$new_columns['session_highlight'] = __( 'Featured', 'tech-conference-site' );
 		}
 	}
 
@@ -237,10 +237,10 @@ function devhorizon_session_columns( $columns ) {
 add_filter( 'manage_devhorizon_session_posts_columns', 'devhorizon_session_columns' );
 
 /**
- * Contenido de las columnas de sesiones.
+ * Session column content.
  *
- * @param string $column  Columna.
- * @param int    $post_id ID del post.
+ * @param string $column  Column.
+ * @param int    $post_id Post ID.
  */
 function devhorizon_session_column_content( $column, $post_id ) {
 	if ( 'session_speaker' === $column ) {
@@ -250,7 +250,7 @@ function devhorizon_session_column_content( $column, $post_id ) {
 
 	if ( 'session_day' === $column ) {
 		$day = (int) get_post_meta( $post_id, '_devhorizon_day', true );
-		echo $day ? esc_html( sprintf( 'Día %d', $day ) ) : '&mdash;';
+		echo $day ? esc_html( sprintf( 'Day %d', $day ) ) : '&mdash;';
 	}
 
 	if ( 'session_time' === $column ) {
@@ -265,7 +265,7 @@ function devhorizon_session_column_content( $column, $post_id ) {
 	}
 
 	if ( 'session_highlight' === $column ) {
-		echo get_post_meta( $post_id, '_devhorizon_highlighted', true ) ? esc_html__( 'Sí', 'tech-conference-site' ) : '&mdash;';
+		echo get_post_meta( $post_id, '_devhorizon_highlighted', true ) ? esc_html__( 'Yes', 'tech-conference-site' ) : '&mdash;';
 	}
 }
 add_action( 'manage_devhorizon_session_posts_custom_column', 'devhorizon_session_column_content', 10, 2 );

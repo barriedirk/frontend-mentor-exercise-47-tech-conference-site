@@ -102,7 +102,7 @@ $devhorizon_tracks         = devhorizon_get_tracks( array( 'keynote' ) );
 					<?php endforeach; ?>
 				</div>
 			<?php else : ?>
-				<p class="empty-state"><?php esc_html_e( 'Los tracks se anunciarán próximamente.', 'tech-conference-site' ); ?></p>
+				<p class="empty-state"><?php esc_html_e( 'Tracks will be announced soon.', 'tech-conference-site' ); ?></p>
 			<?php endif; ?>
 		</div>
 	</section>
@@ -135,7 +135,7 @@ $devhorizon_tracks         = devhorizon_get_tracks( array( 'keynote' ) );
 					</a>
 				</div>
 			<?php else : ?>
-				<p class="empty-state"><?php esc_html_e( 'La lista de speakers se anunciará próximamente.', 'tech-conference-site' ); ?></p>
+				<p class="empty-state"><?php esc_html_e( 'The speaker lineup will be announced soon.', 'tech-conference-site' ); ?></p>
 			<?php endif; ?>
 		</div>
 	</section>
@@ -171,7 +171,7 @@ $devhorizon_tracks         = devhorizon_get_tracks( array( 'keynote' ) );
 					</a>
 				</div>
 			<?php else : ?>
-				<p class="empty-state"><?php esc_html_e( 'Los highlights se anunciarán próximamente.', 'tech-conference-site' ); ?></p>
+				<p class="empty-state"><?php esc_html_e( 'Highlights will be announced soon.', 'tech-conference-site' ); ?></p>
 			<?php endif; ?>
 		</div>
 	</section>

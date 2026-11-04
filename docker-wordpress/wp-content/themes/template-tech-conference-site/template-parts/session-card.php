@@ -1,14 +1,14 @@
 <?php
 /**
- * Tarjeta de sesión reutilizable.
+ * Reusable session card.
  *
- * Variantes:
- * - highlight: ticket de la home.
- * - schedule: ticket de la página de schedule.
+ * Variants:
+ * - highlight: home ticket.
+ * - schedule: schedule page ticket.
  *
  * @package Tech_Conference_Site
  *
- * @var array $args Argumentos del partial.
+ * @var array $args Partial arguments.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -154,7 +154,7 @@ $session_url   = 'session-' . $session_id;
 				type="button"
 				data-bookmark-toggle
 				data-session-id="<?php echo esc_attr( $session_id ); ?>"
-				aria-label="<?php esc_attr_e( 'Guardar en mi horario', 'tech-conference-site' ); ?>"
+				aria-label="<?php esc_attr_e( 'Save to my schedule', 'tech-conference-site' ); ?>"
 				aria-pressed="false"
 			>
 				&#9734;

@@ -36,7 +36,7 @@ $devhorizon_speakers = devhorizon_get_all_speakers();
 				?>
 			</div>
 		<?php else : ?>
-			<p class="empty-state"><?php esc_html_e( 'La lista de speakers se anunciará próximamente.', 'tech-conference-site' ); ?></p>
+			<p class="empty-state"><?php esc_html_e( 'The speaker lineup will be announced soon.', 'tech-conference-site' ); ?></p>
 		<?php endif; ?>
 	</div>
 </main>

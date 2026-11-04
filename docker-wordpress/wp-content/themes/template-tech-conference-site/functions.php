@@ -1,6 +1,6 @@
 <?php
 /**
- * Funciones principales del tema Tech-conference-site.
+ * Main functions for the Tech-conference-site theme.
  *
  * @package Tech_Conference_Site
  */
@@ -20,7 +20,7 @@ require_once DEVHORIZON_DIR . '/inc/queries.php';
 require_once DEVHORIZON_DIR . '/inc/importer.php';
 
 /**
- * Configuración básica del tema.
+ * Basic theme setup.
  */
 function devhorizon_setup() {
 	load_theme_textdomain( 'tech-conference-site', DEVHORIZON_DIR . '/languages' );
@@ -57,14 +57,14 @@ function devhorizon_setup() {
 
 	register_nav_menus(
 		array(
-			'menu-principal' => __( 'Menú Principal', 'tech-conference-site' ),
+			'menu-principal' => __( 'Primary Menu', 'tech-conference-site' ),
 		)
 	);
 }
 add_action( 'after_setup_theme', 'devhorizon_setup' );
 
 /**
- * Encola los assets del tema.
+ * Enqueues the theme assets.
  */
 function devhorizon_enqueue_assets() {
 	$style_path = get_stylesheet_directory() . '/style.css';
@@ -92,9 +92,9 @@ function devhorizon_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'devhorizon_enqueue_assets' );
 
 /**
- * Devuelve la URL de una página por su slug, con fallback seguro.
+ * Returns the URL of a page by slug, with a safe fallback.
  *
- * @param string $slug Slug de la página.
+ * @param string $slug Page slug.
  * @return string
  */
 function devhorizon_page_url( $slug ) {
@@ -104,7 +104,7 @@ function devhorizon_page_url( $slug ) {
 		return get_permalink( $page );
 	}
 
-	// Permite slugs traducidos siempre que la página use la plantilla esperada.
+	// Allows translated slugs as long as the page uses the expected template.
 	$template = 'page-' . sanitize_file_name( $slug ) . '.php';
 	$matches  = get_posts(
 		array(
@@ -125,9 +125,9 @@ function devhorizon_page_url( $slug ) {
 }
 
 /**
- * Renderiza el menú principal.
+ * Renders the primary menu.
  *
- * @param string $menu_class Clases del <ul>.
+ * @param string $menu_class Classes for the <ul>.
  */
 function devhorizon_nav_menu( $menu_class = 'nav-menu nav-menu--desktop' ) {
 	wp_nav_menu(
@@ -144,9 +144,9 @@ function devhorizon_nav_menu( $menu_class = 'nav-menu nav-menu--desktop' ) {
 }
 
 /**
- * Fallback del menú cuando aún no se ha creado en el admin.
+ * Menu fallback for when no menu has been created in the admin yet.
  *
- * @param array $args Argumentos de wp_nav_menu.
+ * @param array $args wp_nav_menu arguments.
  */
 function devhorizon_nav_fallback( $args ) {
 	$menu_class = isset( $args['menu_class'] ) ? (string) $args['menu_class'] : 'nav-menu';
@@ -185,15 +185,15 @@ function devhorizon_nav_fallback( $args ) {
 
 	$html .= '</ul>';
 
-	echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Markup construido y escapado en esta función.
+	echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Markup built and escaped in this function.
 }
 
 /**
- * Añade la clase nav-link solo a los enlaces del menú de navegación.
+ * Adds the nav-link class only to navigation menu links.
  *
- * @param array   $atts Atributos del enlace.
- * @param WP_Post $item Elemento del menú.
- * @param object  $args Argumentos del menú.
+ * @param array   $atts Link attributes.
+ * @param WP_Post $item Menu item.
+ * @param object  $args Menu arguments.
  * @return array
  */
 function devhorizon_menu_link_attributes( $atts, $item, $args ) {
@@ -208,11 +208,11 @@ function devhorizon_menu_link_attributes( $atts, $item, $args ) {
 add_filter( 'nav_menu_link_attributes', 'devhorizon_menu_link_attributes', 10, 3 );
 
 /**
- * Evita IDs duplicados cuando el mismo menú se imprime en desktop, móvil y footer.
+ * Prevents duplicate IDs when the same menu is printed on desktop, mobile, and footer.
  *
- * @param string  $menu_id ID del elemento.
- * @param WP_Post $item    Elemento del menú.
- * @param object  $args    Argumentos del menú.
+ * @param string  $menu_id Element ID.
+ * @param WP_Post $item    Menu item.
+ * @param object  $args    Menu arguments.
  * @return string
  */
 function devhorizon_nav_menu_item_id( $menu_id, $item, $args ) {
@@ -225,9 +225,9 @@ function devhorizon_nav_menu_item_id( $menu_id, $item, $args ) {
 add_filter( 'nav_menu_item_id', 'devhorizon_nav_menu_item_id', 10, 3 );
 
 /**
- * Añade clases de página al body para el scoping del CSS.
+ * Adds page classes to the body for CSS scoping.
  *
- * @param string[] $classes Clases actuales.
+ * @param string[] $classes Current classes.
  * @return string[]
  */
 function devhorizon_body_classes( $classes ) {

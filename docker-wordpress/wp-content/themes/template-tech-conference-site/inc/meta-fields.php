@@ -1,6 +1,6 @@
 <?php
 /**
- * Metadatos y metaboxes nativos.
+ * Native metadata and metaboxes.
  *
  * @package Tech_Conference_Site
  */
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registra los metadatos de speakers y sesiones.
+ * Registers speaker and session metadata.
  */
 function devhorizon_register_post_meta() {
 	$speaker_meta = array(
@@ -58,12 +58,12 @@ function devhorizon_register_post_meta() {
 add_action( 'init', 'devhorizon_register_post_meta' );
 
 /**
- * Registra los metaboxes.
+ * Registers the metaboxes.
  */
 function devhorizon_add_meta_boxes() {
 	add_meta_box(
 		'devhorizon_speaker_details',
-		__( 'Datos del speaker', 'tech-conference-site' ),
+		__( 'Speaker details', 'tech-conference-site' ),
 		'devhorizon_render_speaker_metabox',
 		'devhorizon_speaker',
 		'normal',
@@ -72,7 +72,7 @@ function devhorizon_add_meta_boxes() {
 
 	add_meta_box(
 		'devhorizon_session_details',
-		__( 'Datos de la sesión', 'tech-conference-site' ),
+		__( 'Session details', 'tech-conference-site' ),
 		'devhorizon_render_session_metabox',
 		'devhorizon_session',
 		'normal',
@@ -82,9 +82,9 @@ function devhorizon_add_meta_boxes() {
 add_action( 'add_meta_boxes', 'devhorizon_add_meta_boxes' );
 
 /**
- * Renderiza el metabox de speaker.
+ * Renders the speaker metabox.
  *
- * @param WP_Post $post Post actual.
+ * @param WP_Post $post Current post.
  */
 function devhorizon_render_speaker_metabox( $post ) {
 	$role     = (string) get_post_meta( $post->ID, '_devhorizon_role', true );
@@ -94,29 +94,29 @@ function devhorizon_render_speaker_metabox( $post ) {
 	wp_nonce_field( 'devhorizon_speaker_meta', 'devhorizon_speaker_nonce' );
 	?>
 	<p>
-		<label for="devhorizon_role"><strong><?php esc_html_e( 'Rol', 'tech-conference-site' ); ?></strong></label><br />
+		<label for="devhorizon_role"><strong><?php esc_html_e( 'Role', 'tech-conference-site' ); ?></strong></label><br />
 		<input type="text" class="widefat" id="devhorizon_role" name="devhorizon_role" value="<?php echo esc_attr( $role ); ?>" placeholder="<?php esc_attr_e( 'Principal Frontend Engineer', 'tech-conference-site' ); ?>" />
 	</p>
 	<p>
-		<label for="devhorizon_company"><strong><?php esc_html_e( 'Empresa', 'tech-conference-site' ); ?></strong></label><br />
+		<label for="devhorizon_company"><strong><?php esc_html_e( 'Company', 'tech-conference-site' ); ?></strong></label><br />
 		<input type="text" class="widefat" id="devhorizon_company" name="devhorizon_company" value="<?php echo esc_attr( $company ); ?>" placeholder="<?php esc_attr_e( 'Bytecraft', 'tech-conference-site' ); ?>" />
 	</p>
 	<p>
 		<label>
 			<input type="checkbox" name="devhorizon_featured" value="1" <?php checked( $featured ); ?> />
-			<?php esc_html_e( 'Destacar este speaker en la home', 'tech-conference-site' ); ?>
+			<?php esc_html_e( 'Feature this speaker on the home page', 'tech-conference-site' ); ?>
 		</label>
 	</p>
 	<p class="description">
-		<?php esc_html_e( 'La biografía se escribe en el editor y la foto se asigna como imagen destacada.', 'tech-conference-site' ); ?>
+		<?php esc_html_e( 'The bio is written in the editor and the photo is set as the featured image.', 'tech-conference-site' ); ?>
 	</p>
 	<?php
 }
 
 /**
- * Renderiza el metabox de sesión.
+ * Renders the session metabox.
  *
- * @param WP_Post $post Post actual.
+ * @param WP_Post $post Current post.
  */
 function devhorizon_render_session_metabox( $post ) {
 	$speaker_id  = (int) get_post_meta( $post->ID, '_devhorizon_speaker_id', true );
@@ -144,7 +144,7 @@ function devhorizon_render_session_metabox( $post ) {
 	<p>
 		<label for="devhorizon_speaker_id"><strong><?php esc_html_e( 'Speaker', 'tech-conference-site' ); ?></strong></label><br />
 		<select id="devhorizon_speaker_id" name="devhorizon_speaker_id" class="widefat">
-			<option value="0"><?php esc_html_e( '— Selecciona un speaker —', 'tech-conference-site' ); ?></option>
+			<option value="0"><?php esc_html_e( '— Select a speaker —', 'tech-conference-site' ); ?></option>
 			<?php foreach ( $speakers as $speaker ) : ?>
 				<option value="<?php echo esc_attr( $speaker->ID ); ?>" <?php selected( $speaker_id, $speaker->ID ); ?>>
 					<?php echo esc_html( $speaker->post_title ); ?>
@@ -156,47 +156,47 @@ function devhorizon_render_session_metabox( $post ) {
 		<p class="description">
 			<?php
 			printf(
-				/* translators: %s: URL de la página de importación. */
-				esc_html__( 'Todavía no hay speakers. Ejecuta el importador en %s.', 'tech-conference-site' ),
-				'<a href="' . esc_url( admin_url( 'tools.php?page=devhorizon-import' ) ) . '">' . esc_html__( 'Herramientas → Importar DevHorizon', 'tech-conference-site' ) . '</a>'
+				/* translators: %s: import page URL. */
+				esc_html__( 'There are no speakers yet. Run the importer in %s.', 'tech-conference-site' ),
+				'<a href="' . esc_url( admin_url( 'tools.php?page=devhorizon-import' ) ) . '">' . esc_html__( 'Tools → Import DevHorizon', 'tech-conference-site' ) . '</a>'
 			);
 			?>
 		</p>
 	<?php endif; ?>
 	<p>
-		<label for="devhorizon_day"><strong><?php esc_html_e( 'Día', 'tech-conference-site' ); ?></strong></label><br />
+		<label for="devhorizon_day"><strong><?php esc_html_e( 'Day', 'tech-conference-site' ); ?></strong></label><br />
 		<select id="devhorizon_day" name="devhorizon_day">
-			<option value="1" <?php selected( $day, 1 ); ?>><?php esc_html_e( 'Día 1', 'tech-conference-site' ); ?></option>
-			<option value="2" <?php selected( $day, 2 ); ?>><?php esc_html_e( 'Día 2', 'tech-conference-site' ); ?></option>
-			<option value="3" <?php selected( $day, 3 ); ?>><?php esc_html_e( 'Día 3', 'tech-conference-site' ); ?></option>
+			<option value="1" <?php selected( $day, 1 ); ?>><?php esc_html_e( 'Day 1', 'tech-conference-site' ); ?></option>
+			<option value="2" <?php selected( $day, 2 ); ?>><?php esc_html_e( 'Day 2', 'tech-conference-site' ); ?></option>
+			<option value="3" <?php selected( $day, 3 ); ?>><?php esc_html_e( 'Day 3', 'tech-conference-site' ); ?></option>
 		</select>
 	</p>
 	<p>
-		<label for="devhorizon_start_time"><strong><?php esc_html_e( 'Hora inicial', 'tech-conference-site' ); ?></strong></label><br />
+		<label for="devhorizon_start_time"><strong><?php esc_html_e( 'Start time', 'tech-conference-site' ); ?></strong></label><br />
 		<input type="text" id="devhorizon_start_time" name="devhorizon_start_time" value="<?php echo esc_attr( $start_time ); ?>" placeholder="9:00" />
-		<label for="devhorizon_end_time" style="margin-left:16px;"><strong><?php esc_html_e( 'Hora final', 'tech-conference-site' ); ?></strong></label>
+		<label for="devhorizon_end_time" style="margin-left:16px;"><strong><?php esc_html_e( 'End time', 'tech-conference-site' ); ?></strong></label>
 		<input type="text" id="devhorizon_end_time" name="devhorizon_end_time" value="<?php echo esc_attr( $end_time ); ?>" placeholder="10:00" />
 	</p>
 	<p>
-		<label for="devhorizon_location"><strong><?php esc_html_e( 'Localización', 'tech-conference-site' ); ?></strong></label><br />
+		<label for="devhorizon_location"><strong><?php esc_html_e( 'Location', 'tech-conference-site' ); ?></strong></label><br />
 		<input type="text" class="widefat" id="devhorizon_location" name="devhorizon_location" value="<?php echo esc_attr( $location ); ?>" placeholder="Room A" />
 	</p>
 	<p>
 		<label>
 			<input type="checkbox" name="devhorizon_highlighted" value="1" <?php checked( $highlighted ); ?> />
-			<?php esc_html_e( 'Destacar esta sesión en la home', 'tech-conference-site' ); ?>
+			<?php esc_html_e( 'Feature this session on the home page', 'tech-conference-site' ); ?>
 		</label>
 	</p>
 	<p class="description">
-		<?php esc_html_e( 'El track se asigna desde la caja de la taxonomía “Tracks”. La descripción se escribe en el editor.', 'tech-conference-site' ); ?>
+		<?php esc_html_e( 'The track is assigned from the "Tracks" taxonomy box. The description is written in the editor.', 'tech-conference-site' ); ?>
 	</p>
 	<?php
 }
 
 /**
- * Guarda los metadatos del speaker.
+ * Saves the speaker metadata.
  *
- * @param int $post_id ID del post.
+ * @param int $post_id Post ID.
  */
 function devhorizon_save_speaker_meta( $post_id ) {
 	if ( ! isset( $_POST['devhorizon_speaker_nonce'] ) ) {
@@ -232,9 +232,9 @@ function devhorizon_save_speaker_meta( $post_id ) {
 add_action( 'save_post', 'devhorizon_save_speaker_meta' );
 
 /**
- * Guarda los metadatos de la sesión.
+ * Saves the session metadata.
  *
- * @param int $post_id ID del post.
+ * @param int $post_id Post ID.
  */
 function devhorizon_save_session_meta( $post_id ) {
 	if ( ! isset( $_POST['devhorizon_session_nonce'] ) ) {

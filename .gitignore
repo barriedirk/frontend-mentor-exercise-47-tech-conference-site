@@ -12,7 +12,7 @@ docker-wordpress/wp-content/uploads/
 *.fig
 *.xd
 figma/
-.zip
+*.zip
 
 # Dependencies
 /node_modules
@@ -48,4 +48,5 @@ npm-debug.log*
 *.log
 *.pem
 .DS_Store
-Thumbs.dbtech-conference-site-figma.zip
+Thumbs.db
+tech-conference-site-figma.zip

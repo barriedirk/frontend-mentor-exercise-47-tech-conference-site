@@ -1,10 +1,10 @@
 <?php
 /**
- * Tarjeta de speaker reutilizable.
+ * Reusable speaker card.
  *
  * @package Tech_Conference_Site
  *
- * @var array $args Argumentos del partial.
+ * @var array $args Partial arguments.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,7 +25,7 @@ $talk_title   = $session ? get_the_title( $session->ID ) : '';
 $modal_attrs  = devhorizon_speaker_modal_attrs( $speaker_id );
 $aria_label   = sprintf(
 	/* translators: %s: speaker name. */
-	__( 'Ver detalles de %s', 'tech-conference-site' ),
+	__( 'View details for %s', 'tech-conference-site' ),
 	$speaker_name
 );
 ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Importador de contenido de DevHorizon.
+ * DevHorizon content importer.
  *
  * @package Tech_Conference_Site
  */
@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registra la página de importación en Herramientas.
+ * Registers the import page under Tools.
  */
 function devhorizon_register_import_page() {
 	add_management_page(
-		__( 'Importar DevHorizon', 'tech-conference-site' ),
-		__( 'Importar DevHorizon', 'tech-conference-site' ),
+		__( 'Import DevHorizon', 'tech-conference-site' ),
+		__( 'Import DevHorizon', 'tech-conference-site' ),
 		'manage_options',
 		'devhorizon-import',
 		'devhorizon_render_import_page'
@@ -24,7 +24,7 @@ function devhorizon_register_import_page() {
 add_action( 'admin_menu', 'devhorizon_register_import_page' );
 
 /**
- * Procesa el formulario de importación.
+ * Processes the import form.
  */
 function devhorizon_maybe_run_import() {
 	if ( ! is_admin() || ! isset( $_POST['devhorizon_import_submit'] ) ) {
@@ -32,7 +32,7 @@ function devhorizon_maybe_run_import() {
 	}
 
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( esc_html__( 'No tienes permisos para ejecutar esta importación.', 'tech-conference-site' ) );
+		wp_die( esc_html__( 'You do not have permission to run this import.', 'tech-conference-site' ) );
 	}
 
 	check_admin_referer( 'devhorizon_import_action', 'devhorizon_import_nonce' );
@@ -49,7 +49,7 @@ function devhorizon_maybe_run_import() {
 			'type'    => 'success',
 			'message' => sprintf(
 				/* translators: 1: tracks, 2: speakers, 3: sessions, 4: photos. */
-				__( 'Importación completada: %1$d tracks, %2$d speakers, %3$d sesiones y %4$d fotos procesadas.', 'tech-conference-site' ),
+				__( 'Import complete: %1$d tracks, %2$d speakers, %3$d sessions, and %4$d photos processed.', 'tech-conference-site' ),
 				(int) $result['tracks'],
 				(int) $result['speakers'],
 				(int) $result['sessions'],
@@ -66,7 +66,7 @@ function devhorizon_maybe_run_import() {
 add_action( 'admin_init', 'devhorizon_maybe_run_import' );
 
 /**
- * Aviso si el contenido todavía no se ha importado.
+ * Notice shown when content has not been imported yet.
  */
 function devhorizon_import_admin_notice() {
 	if ( get_option( 'devhorizon_imported_at' ) || ! current_user_can( 'manage_options' ) ) {
@@ -81,15 +81,15 @@ function devhorizon_import_admin_notice() {
 
 	printf(
 		'<div class="notice notice-warning"><p>%1$s <a href="%2$s">%3$s</a></p></div>',
-		esc_html__( 'El contenido de DevHorizon todavía no se ha importado.', 'tech-conference-site' ),
+		esc_html__( 'DevHorizon content has not been imported yet.', 'tech-conference-site' ),
 		esc_url( admin_url( 'tools.php?page=devhorizon-import' ) ),
-		esc_html__( 'Ejecutar el importador', 'tech-conference-site' )
+		esc_html__( 'Run the importer', 'tech-conference-site' )
 	);
 }
 add_action( 'admin_notices', 'devhorizon_import_admin_notice' );
 
 /**
- * Renderiza la página de importación.
+ * Renders the import page.
  */
 function devhorizon_render_import_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -108,7 +108,7 @@ function devhorizon_render_import_page() {
 	$json_path   = DEVHORIZON_DIR . '/data/devhorizon-data.json';
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Importar DevHorizon', 'tech-conference-site' ); ?></h1>
+		<h1><?php esc_html_e( 'Import DevHorizon', 'tech-conference-site' ); ?></h1>
 
 		<?php if ( $notice ) : ?>
 			<div class="notice notice-<?php echo esc_attr( $notice['type'] ); ?> is-dismissible">
@@ -117,11 +117,11 @@ function devhorizon_render_import_page() {
 		<?php endif; ?>
 
 		<p>
-			<?php esc_html_e( 'Este proceso crea los tracks, los 20 speakers con sus fotos, y las 20 sesiones del evento a partir del archivo de datos incluido en el tema. Es idempotente: si se ejecuta de nuevo, actualiza el contenido existente en lugar de duplicarlo.', 'tech-conference-site' ); ?>
+			<?php esc_html_e( 'This process creates the tracks, the 20 speakers with their photos, and the 20 event sessions from the data file included in the theme. It is idempotent: running it again updates existing content instead of duplicating it.', 'tech-conference-site' ); ?>
 		</p>
 
 		<p>
-			<strong><?php esc_html_e( 'Archivo de datos:', 'tech-conference-site' ); ?></strong>
+			<strong><?php esc_html_e( 'Data file:', 'tech-conference-site' ); ?></strong>
 			<code><?php echo esc_html( $json_path ); ?></code>
 		</p>
 
@@ -130,8 +130,8 @@ function devhorizon_render_import_page() {
 				<p>
 					<?php
 					printf(
-						/* translators: 1: fecha, 2: tracks, 3: speakers, 4: sesiones, 5: fotos. */
-						esc_html__( 'Última importación: %1$s. Tracks: %2$d · Speakers: %3$d · Sesiones: %4$d · Fotos: %5$d.', 'tech-conference-site' ),
+						/* translators: 1: date, 2: tracks, 3: speakers, 4: sessions, 5: photos. */
+						esc_html__( 'Last import: %1$s. Tracks: %2$d · Speakers: %3$d · Sessions: %4$d · Photos: %5$d.', 'tech-conference-site' ),
 						esc_html( $imported_at ),
 						(int) ( $counts['tracks'] ?? 0 ),
 						(int) ( $counts['speakers'] ?? 0 ),
@@ -145,21 +145,21 @@ function devhorizon_render_import_page() {
 
 		<form method="post">
 			<?php wp_nonce_field( 'devhorizon_import_action', 'devhorizon_import_nonce' ); ?>
-			<?php submit_button( __( 'Importar contenido DevHorizon', 'tech-conference-site' ), 'primary', 'devhorizon_import_submit' ); ?>
+			<?php submit_button( __( 'Import DevHorizon content', 'tech-conference-site' ), 'primary', 'devhorizon_import_submit' ); ?>
 		</form>
 
-		<h2><?php esc_html_e( 'Después de importar', 'tech-conference-site' ); ?></h2>
+		<h2><?php esc_html_e( 'After importing', 'tech-conference-site' ); ?></h2>
 		<ol>
-			<li><?php esc_html_e( 'Crea las páginas Home, Speakers y Schedule y asígnales las plantillas correspondientes.', 'tech-conference-site' ); ?></li>
-			<li><?php esc_html_e( 'Configura la página Home como portada estática en Ajustes → Lectura.', 'tech-conference-site' ); ?></li>
-			<li><?php esc_html_e( 'Crea un menú en Apariencia → Menús y asígnalo a la ubicación “Menú Principal”.', 'tech-conference-site' ); ?></li>
+			<li><?php esc_html_e( 'Create the Home, Speakers, and Schedule pages and assign the corresponding templates.', 'tech-conference-site' ); ?></li>
+			<li><?php esc_html_e( 'Set the Home page as the static front page under Settings → Reading.', 'tech-conference-site' ); ?></li>
+			<li><?php esc_html_e( 'Create a menu under Appearance → Menus and assign it to the "Primary Menu" location.', 'tech-conference-site' ); ?></li>
 		</ol>
 	</div>
 	<?php
 }
 
 /**
- * Ejecuta la importación completa.
+ * Runs the full import.
  *
  * @return array|WP_Error
  */
@@ -169,7 +169,7 @@ function devhorizon_run_import() {
 	if ( ! file_exists( $json_path ) ) {
 		return new WP_Error(
 			'devhorizon_missing_data',
-			__( 'No se ha encontrado el archivo data/devhorizon-data.json.', 'tech-conference-site' )
+			__( 'The file data/devhorizon-data.json could not be found.', 'tech-conference-site' )
 		);
 	}
 
@@ -178,7 +178,7 @@ function devhorizon_run_import() {
 	if ( false === $json ) {
 		return new WP_Error(
 			'devhorizon_unreadable_data',
-			__( 'No se ha podido leer el archivo de datos.', 'tech-conference-site' )
+			__( 'The data file could not be read.', 'tech-conference-site' )
 		);
 	}
 
@@ -187,7 +187,7 @@ function devhorizon_run_import() {
 	if ( ! is_array( $data ) || empty( $data['speakers'] ) || empty( $data['talks'] ) ) {
 		return new WP_Error(
 			'devhorizon_invalid_data',
-			__( 'El archivo de datos no tiene el formato esperado.', 'tech-conference-site' )
+			__( 'The data file does not have the expected format.', 'tech-conference-site' )
 		);
 	}
 
@@ -292,7 +292,7 @@ function devhorizon_run_import() {
 		++$counts['speakers'];
 	}
 
-	// Sesiones.
+	// Sessions.
 	foreach ( (array) $data['talks'] as $index => $talk ) {
 		$source_id = $talk['id'];
 		$post_id   = devhorizon_find_imported_post( 'devhorizon_session', $source_id );
@@ -350,10 +350,10 @@ function devhorizon_run_import() {
 }
 
 /**
- * Busca un post importado por su ID de origen.
+ * Finds an imported post by its source ID.
  *
- * @param string $post_type Tipo de post.
- * @param string $source_id ID del JSON.
+ * @param string $post_type Post type.
+ * @param string $source_id JSON ID.
  * @return int
  */
 function devhorizon_find_imported_post( $post_type, $source_id ) {
@@ -372,11 +372,11 @@ function devhorizon_find_imported_post( $post_type, $source_id ) {
 }
 
 /**
- * Importa una imagen local del tema a la Media Library.
+ * Imports a local theme image into the Media Library.
  *
- * @param string $filename Nombre del archivo.
- * @param string $title    Título del adjunto.
- * @return int ID del adjunto o 0 si falla.
+ * @param string $filename File name.
+ * @param string $title    Attachment title.
+ * @return int Attachment ID, or 0 on failure.
  */
 function devhorizon_import_attachment( $filename, $title ) {
 	$filename = sanitize_file_name( basename( (string) $filename ) );
