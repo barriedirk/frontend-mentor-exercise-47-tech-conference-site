@@ -1,0 +1,688 @@
+/* ==========================================================================
+   DEVHORIZON_26 — RESPONSIVE CONFERENCE SCHEDULE
+   Pure Vanilla CSS with Breakpoints: Mobile (<768px), Tablet (768-1023px), Desktop (>=1024px)
+   ========================================================================== */
+
+/* --- Custom Variables & Palette --- */
+:root {
+  --bg-dark: #041318;
+  --bg-header: #05161c;
+  --bg-card-track: #06191f;
+  --bg-footer: #030e12;
+  --border-dark: #0d2a32;
+  --border-muted: #143d46;
+  --border-light: #255864;
+  
+  --accent-lime: #c8f535;
+  --text-dark: #06151a;
+  --text-muted: #8ea7af;
+  --text-light: #f1f5f9;
+  
+  /* Track Background Colors (Matching mockups) */
+  --track-keynote: #9fe4fa;       /* Sky Cyan */
+  --track-performance: #fbbdb7;   /* Salmon Coral */
+  --track-tooling: #cabffa;       /* Lavender Periwinkle */
+  --track-frontend: #fbd89a;      /* Soft Yellow */
+  --track-accessibility: #9ec4f8; /* Cornflower Blue */
+
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Reset & Global --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-mono);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- Layout Container --- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* --- Header --- */
+.site-header {
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-dark);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.5rem;
+}
+
+.brand-logo {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-lime);
+  letter-spacing: -0.02em;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border-muted);
+  color: var(--text-muted);
+  background-color: rgba(7, 29, 36, 0.4);
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  color: #fff;
+  border-color: var(--border-light);
+}
+
+.nav-link.active {
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
+  background-color: rgba(200, 245, 53, 0.05);
+  font-weight: 600;
+}
+
+.menu-toggle {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--border-muted);
+  color: var(--text-muted);
+  background: rgba(7, 29, 36, 0.6);
+  font-size: 1.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Main Schedule Section --- */
+.schedule-main {
+  padding-top: 2rem;
+  padding-bottom: 3.5rem;
+}
+
+.page-title {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-lime);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+/* --- Filter Bar --- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+}
+
+.day-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-day {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border-muted);
+  background-color: rgba(7, 29, 36, 0.6);
+  color: var(--text-muted);
+  transition: all 0.15s ease;
+}
+
+.btn-day:hover {
+  border-color: var(--border-light);
+  color: #fff;
+}
+
+.btn-day.active {
+  background-color: var(--accent-lime);
+  color: var(--bg-dark);
+  border-color: var(--accent-lime);
+}
+
+.filter-divider {
+  display: block;
+  width: 1px;
+  height: 1.5rem;
+  background-color: var(--border-muted);
+  margin: 0 0.25rem;
+}
+
+.track-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-pill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-muted);
+  color: var(--text-muted);
+  background-color: rgba(7, 29, 36, 0.4);
+  transition: all 0.15s ease;
+}
+
+.btn-pill:hover {
+  border-color: var(--border-light);
+  color: #fff;
+}
+
+.btn-pill.active {
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
+  background-color: rgba(200, 245, 53, 0.15);
+  font-weight: 600;
+}
+
+.btn-pill.pill-dashed {
+  border: 1px dashed var(--accent-lime);
+  color: var(--accent-lime);
+  background: transparent;
+}
+
+.btn-pill.pill-dashed:hover {
+  background-color: rgba(200, 245, 53, 0.1);
+}
+
+.btn-pill.pill-clear {
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+}
+
+.btn-pill.pill-clear:hover {
+  background-color: rgba(255, 107, 107, 0.15);
+}
+
+/* --- Ticket Cards Container --- */
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* --- Ticket Card (Base: Desktop / Tablet 3-Zone Ticket) --- */
+.ticket-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border: 1px solid var(--border-dark);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.ticket-card:hover {
+  border-color: var(--border-light);
+}
+
+/* Track Color Variants */
+.ticket-card.track-keynote .card-body,
+.ticket-card.track-keynote .card-stub {
+  background-color: var(--track-keynote);
+}
+
+.ticket-card.track-performance .card-body,
+.ticket-card.track-performance .card-stub {
+  background-color: var(--track-performance);
+}
+
+.ticket-card.track-tooling .card-body,
+.ticket-card.track-tooling .card-stub {
+  background-color: var(--track-tooling);
+}
+
+.ticket-card.track-frontend .card-body,
+.ticket-card.track-frontend .card-stub {
+  background-color: var(--track-frontend);
+}
+
+.ticket-card.track-accessibility .card-body,
+.ticket-card.track-accessibility .card-stub {
+  background-color: var(--track-accessibility);
+}
+
+/* Desktop/Tablet: Left Vertical Track Bar */
+.card-track-vertical {
+  width: 3.25rem;
+  background-color: var(--bg-card-track);
+  border-right: 1px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 1.5rem 0;
+  user-select: none;
+}
+
+.card-track-vertical span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Mobile Top Track Bar (Hidden on Desktop & Tablet) */
+.card-track-mobile {
+  display: none;
+}
+
+/* Main Card Body */
+.card-body {
+  flex: 1;
+  padding: 1.75rem 2rem;
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  text-transform: lowercase;
+  margin-bottom: 0.5rem;
+}
+
+.card-speaker {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(6, 21, 26, 0.9);
+  margin-bottom: 0.5rem;
+}
+
+.card-speaker .speaker-separator {
+  margin: 0 0.5rem;
+  opacity: 0.6;
+}
+
+.card-description {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  line-height: 1.6;
+  color: rgba(6, 21, 26, 0.85);
+  max-width: 50rem;
+}
+
+.card-location {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+}
+
+.card-toggle-btn {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-dark);
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.15s ease;
+}
+
+.card-toggle-btn:hover {
+  opacity: 0.7;
+}
+
+/* Right Ticket Stub (Desktop & Tablet) */
+.card-stub {
+  width: 9.5rem;
+  border-left: 1px dashed rgba(6, 21, 26, 0.35);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.stub-times {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-start {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+}
+
+.time-end {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(6, 21, 26, 0.7);
+  font-weight: 500;
+}
+
+.stub-barcode {
+  margin: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barcode-svg {
+  height: 2rem;
+  width: auto;
+  color: var(--text-dark);
+}
+
+.btn-star {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(6, 21, 26, 0.4);
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: all 0.15s ease;
+}
+
+.btn-star:hover {
+  background-color: rgba(6, 21, 26, 0.15);
+  border-color: var(--text-dark);
+}
+
+.btn-star.saved {
+  background-color: var(--text-dark);
+  color: #fff;
+  border-color: var(--text-dark);
+}
+
+/* --- Footer --- */
+.site-footer {
+  margin-top: 5rem;
+  border-top: 1px solid var(--border-dark);
+  background-color: var(--bg-footer);
+  padding-top: 3.5rem;
+  padding-bottom: 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.footer-brand h2 {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-lime);
+  margin-bottom: 0.85rem;
+}
+
+.footer-brand p {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 20rem;
+}
+
+.footer-col h3 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-lime);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.85rem;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-col a, .footer-col p {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+
+.footer-col a:hover {
+  color: #fff;
+}
+
+.footer-col .active-link {
+  color: var(--accent-lime);
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #5f7a83;
+}
+
+.back-to-top {
+  color: #5f7a83;
+  transition: color 0.15s ease;
+}
+
+.back-to-top:hover {
+  color: var(--accent-lime);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINT 1: TABLET (768px – 1023px)
+   ========================================================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card-body {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-stub {
+    width: 8.5rem;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINT 2: MOBILE (< 768px)
+   Re-architects cards to top-banner + content + horizontal bottom ticket stub
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* Navigation: Show Hamburger, Hide full links */
+  .main-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  /* Filter bar wraps into grouped mobile rows */
+  .filter-bar {
+    gap: 0.5rem;
+  }
+
+  .filter-divider {
+    display: none;
+  }
+
+  .day-group {
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  .track-group {
+    width: 100%;
+  }
+
+  /* TICKET CARD: Convert from horizontal 3-column to vertical stack */
+  .ticket-card {
+    flex-direction: column;
+  }
+
+  /* Hide left vertical track strip */
+  .card-track-vertical {
+    display: none;
+  }
+
+  /* Show top dark track header bar */
+  .card-track-mobile {
+    display: block;
+    width: 100%;
+    background-color: var(--bg-card-track);
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .card-track-mobile span {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* Main body */
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.35rem;
+  }
+
+  /* TICKET STUB: Convert to horizontal bottom strip */
+  .card-stub {
+    width: 100%;
+    border-left: none;
+    border-top: 1px dashed rgba(6, 21, 26, 0.35);
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.85rem 1.25rem;
+  }
+
+  .stub-times {
+    align-items: flex-start;
+  }
+
+  .time-start {
+    font-size: 1.15rem;
+  }
+
+  .stub-barcode {
+    margin: 0;
+  }
+
+  .barcode-svg {
+    height: 1.65rem;
+  }
+
+  /* Footer on Mobile */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+}

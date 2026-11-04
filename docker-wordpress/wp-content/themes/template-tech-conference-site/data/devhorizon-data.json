@@ -1,0 +1,471 @@
+{
+  "conference": {
+    "name": "DevHorizon 2026",
+    "brandCode": "DEVHORIZON_26",
+    "tagline": "where code meets the machine_",
+    "startDate": "2026-11-15",
+    "endDate": "2026-11-17",
+    "location": {
+      "venue": "Pier 70",
+      "city": "San Francisco",
+      "cityAbbreviation": "SF",
+      "state": "CA"
+    }
+  },
+  "tracks": [
+    {
+      "id": "tr_0",
+      "name": "Keynote",
+      "description": "Opening and closing sessions",
+      "color": "#B5E9FC"
+    },
+    {
+      "id": "tr_1",
+      "name": "Frontend",
+      "description": "Building modern interfaces for the web",
+      "color": "#FFE6BA"
+    },
+    {
+      "id": "tr_2",
+      "name": "Performance",
+      "description": "Make every millisecond count",
+      "color": "#FEC9C3"
+    },
+    {
+      "id": "tr_3",
+      "name": "Accessibility",
+      "description": "Building inclusive experiences for everyone",
+      "color": "#BBD8FF"
+    },
+    {
+      "id": "tr_4",
+      "name": "Tooling",
+      "description": "Level up your developer workflow",
+      "color": "#CCC4FD"
+    }
+  ],
+  "speakers": [
+    {
+      "id": "sp_0",
+      "name": "Elena Vasquez",
+      "role": "Principal Frontend Engineer",
+      "company": "Bytecraft",
+      "avatar": "./assets/images/avatar-elena-vasquez.webp",
+      "bio": "Elena has spent the last decade pushing the boundaries of in-browser development environments. She led the browser-native IDE initiative at Bytecraft and is a frequent contributor to the TC39 process. Her work focuses on making the web platform a first-class development target.",
+      "featured": true
+    },
+    {
+      "id": "sp_1",
+      "name": "Aisha Patel",
+      "role": "Web Performance Lead",
+      "company": "Edgevane",
+      "avatar": "./assets/images/avatar-aisha-patel.webp",
+      "bio": "Aisha specializes in edge computing and CDN optimization, having helped some of the world's largest sites achieve sub-second load times. Before Edgevane, she built performance monitoring tools at a leading observability startup. She co-authored the Web Performance Working Group's guidelines on loading best practices.",
+      "featured": false
+    },
+    {
+      "id": "sp_2",
+      "name": "Naomi Tanaka",
+      "role": "Accessibility Engineering Lead",
+      "company": "Axion",
+      "avatar": "./assets/images/avatar-naomi-tanaka.webp",
+      "bio": "Naomi leads the accessibility engineering team behind Axion's open-source component library. She's a W3C ARIA Working Group participant and has been instrumental in shaping the ARIA Authoring Practices Guide. She frequently consults with assistive technology vendors to bridge the gap between spec and implementation.",
+      "featured": true
+    },
+    {
+      "id": "sp_3",
+      "name": "James Okonkwo",
+      "role": "Engineering Director",
+      "company": "Cartwell",
+      "avatar": "./assets/images/avatar-james-okonkwo.webp",
+      "bio": "James oversees Cartwell's frontend platform team, managing the monorepo that powers thousands of internal and merchant-facing applications. He's a vocal advocate for developer experience as a product concern and has led the company's migration to a unified build system serving over 300 engineers.",
+      "featured": true
+    },
+    {
+      "id": "sp_4",
+      "name": "Sarah Lindström",
+      "role": "Design Systems Lead",
+      "company": "Tessera",
+      "avatar": "./assets/images/avatar-sarah-lindstrom.webp",
+      "bio": "Sarah bridges the gap between design and engineering at Tessera, where she leads the team responsible for the company's own internal design system. Previously a frontend architect at Spectra, she's known for her work on design token standards and cross-platform component APIs.",
+      "featured": true
+    },
+    {
+      "id": "sp_5",
+      "name": "Devon Park",
+      "role": "Frontend Architect",
+      "company": "Luminary",
+      "avatar": "./assets/images/avatar-devon-park.webp",
+      "bio": "Devon architects the rendering pipeline for Luminary's browse experience, serving billions of page views monthly. His team pioneered partial hydration patterns that reduced time-to-interactive by 40% across the web client. He's a regular speaker on server-side rendering strategies at scale.",
+      "featured": false
+    },
+    {
+      "id": "sp_6",
+      "name": "Bertram Gilfoyle",
+      "role": "Systems Architect",
+      "company": "Pied Piper",
+      "avatar": "./assets/images/avatar-bertram-gilfoyle.webp",
+      "bio": "Gilfoyle is the systems architect at Pied Piper, where he designed and maintains the company's server infrastructure. A self-described Anton LaVeyan Satanist and an uncompromising engineer, he built the AI system known as Son of Anton — a code-generation engine trained on Pied Piper's proprietary middle-out compression algorithm. He has strong opinions about proprietary software, server rack airflow, and why your deployment pipeline is wrong.",
+      "featured": false
+    },
+    {
+      "id": "sp_7",
+      "name": "Priya Sharma",
+      "role": "Senior Developer Advocate",
+      "company": "Cobalt",
+      "avatar": "./assets/images/avatar-priya-sharma.webp",
+      "bio": "Priya works on the developer relations team at Cobalt, focusing on accessibility tooling and standards education. She created the popular 'A11y Myths Busted' video series and contributes to the browser's accessibility auditing rules. Before Cobalt, she worked as a frontend engineer at a leading accessibility consultancy.",
+      "featured": true
+    },
+    {
+      "id": "sp_8",
+      "name": "Lucas Moreau",
+      "role": "Senior Frontend Engineer",
+      "company": "Websmith",
+      "avatar": "./assets/images/avatar-lucas-moreau.webp",
+      "bio": "Lucas works on browser developer tools at Websmith, with a particular focus on CSS debugging and layout inspection features. He's the creator of several popular CSS layout inspectors and contributes to CSS specifications at the W3C. He believes that better tools create better developers.",
+      "featured": true
+    },
+    {
+      "id": "sp_9",
+      "name": "Marcus Chen",
+      "role": "Staff UI Engineer",
+      "company": "Nimbus",
+      "avatar": "./assets/images/avatar-marcus-chen.webp",
+      "bio": "Marcus is a core contributor to a popular React meta-framework, focusing on server-side rendering and React Server Components integration. He joined Nimbus from Roamly, where he helped build their server-rendering infrastructure. He's passionate about making complex patterns feel simple for everyday developers.",
+      "featured": false
+    },
+    {
+      "id": "sp_10",
+      "name": "Ryan O'Sullivan",
+      "role": "DevTools Engineer",
+      "company": "Cobalt",
+      "avatar": "./assets/images/avatar-ryan-o-sullivan.webp",
+      "bio": "Ryan builds the performance profiling tools in Cobalt's browser DevTools, including the Performance panel and the Interactions timeline. Prior to Cobalt, he spent five years at a game studio optimizing WebGL rendering. He brings a frame-rate-obsessed mindset to everything he builds.",
+      "featured": true
+    },
+    {
+      "id": "sp_11",
+      "name": "Fatima Al-Rashid",
+      "role": "Senior UI Engineer",
+      "company": "Spectra",
+      "avatar": "./assets/images/avatar-fatima-al-rashid.webp",
+      "bio": "Fatima works on Spectra's web player, where she focuses on making rich media experiences accessible to all users. She helped build Spectra's automated accessibility testing pipeline and regularly collaborates with blind and low-vision users to improve the listening experience on the web.",
+      "featured": false
+    },
+    {
+      "id": "sp_12",
+      "name": "Tom Kowalski",
+      "role": "Platform Engineer",
+      "company": "Nimbus",
+      "avatar": "./assets/images/avatar-tom-kowalski.webp",
+      "bio": "Tom leads the infrastructure behind Nimbus's deploy preview system, managing ephemeral environments at massive scale. He previously built CI/CD systems at a leading platform company and has deep expertise in containerization, edge networking, and developer workflow optimization.",
+      "featured": true
+    },
+    {
+      "id": "sp_13",
+      "name": "Mei-Lin Zhang",
+      "role": "Staff Engineer",
+      "company": "Roamly",
+      "avatar": "./assets/images/avatar-mei-lin-zhang.webp",
+      "bio": "Mei-Lin is a CSS Working Group invited expert and the architect behind Roamly's responsive design system. She's been a leading voice in the container queries specification process and has helped ship container query-based layouts to production at Roamly, serving millions of users globally.",
+      "featured": false
+    },
+    {
+      "id": "sp_14",
+      "name": "Dinesh Chugtai",
+      "role": "Senior Frontend Engineer",
+      "company": "Pied Piper",
+      "avatar": "./assets/images/avatar-dinesh-chugtai.webp",
+      "bio": "Dinesh is a senior frontend engineer at Pied Piper, where he led the development of the Pied Piper video chat platform and the consumer-facing web interface. He specializes in real-time video compression on the client side and has deep experience with WebRTC, codec optimization, and building performant media experiences in the browser. He's also an occasional chain-wearer and reluctant Java apologist.",
+      "featured": false
+    },
+    {
+      "id": "sp_15",
+      "name": "Carlos Rivera",
+      "role": "Core Team Member",
+      "company": "Blaze",
+      "avatar": "./assets/images/avatar-carlos-rivera.webp",
+      "bio": "Carlos is a core maintainer of the Blaze build tool, working full-time on open source through community sponsorship. He focuses on build performance, plugin architecture, and module resolution. Before going full-time on OSS, he was a senior engineer at a leading observability company's frontend platform team.",
+      "featured": false
+    },
+    {
+      "id": "sp_16",
+      "name": "Hannah Bergström",
+      "role": "UX Engineer",
+      "company": "Paypath",
+      "avatar": "./assets/images/avatar-hannah-bergstrom.webp",
+      "bio": "Hannah works on Paypath's payment interfaces, where accessible and intuitive form design directly impacts conversion rates. She led the redesign of the checkout form flow, improving completion rates by 12% while achieving WCAG 2.2 AAA compliance across all payment methods.",
+      "featured": false
+    },
+    {
+      "id": "sp_17",
+      "name": "Kwame Asante",
+      "role": "Engineering Manager",
+      "company": "Trackwise",
+      "avatar": "./assets/images/avatar-kwame-asante.webp",
+      "bio": "Kwame manages Trackwise's frontend platform team, where he oversees the integration of AI-powered features into the development workflow. Previously at a major developer tools company, he led their AI feature integration team. He's a pragmatic voice in the conversation about AI's role in software development.",
+      "featured": false
+    },
+    {
+      "id": "sp_18",
+      "name": "Julia Petrov",
+      "role": "Runtime Engineer",
+      "company": "Dawn",
+      "avatar": "./assets/images/avatar-julia-petrov.webp",
+      "bio": "Julia works on Dawn's web-standard APIs and server-side rendering capabilities. She's a JavaScript runtime core collaborator and has deep expertise in runtime internals. Her recent work focuses on making server-rendered HTML fast without requiring heavy framework abstractions.",
+      "featured": false
+    },
+    {
+      "id": "sp_19",
+      "name": "Oliver Chang",
+      "role": "Principal Architect",
+      "company": "Crestline",
+      "avatar": "./assets/images/avatar-oliver-chang.webp",
+      "bio": "Oliver oversees Crestline's web performance infrastructure, optimizing page load and interaction performance for over three billion users. He co-created the INP metric proposal and led the adoption of React concurrent features at scale. He's published extensively on real-user performance measurement.",
+      "featured": false
+    }
+  ],
+  "talks": [
+    {
+      "id": "tk_0",
+      "title": "The Next Frontier of Web Development",
+      "speakerId": "sp_0",
+      "day": 1,
+      "trackId": "tr_0",
+      "startTime": "9:00",
+      "endTime": "10:00",
+      "location": "Room A",
+      "description": "The opening keynote. Elena takes the audience on a tour of the web platform's most transformative recent additions — from WebGPU to View Transitions to baseline support for container queries. She live-demos a full-stack application running entirely in the browser and makes the case that the gap between native and web has never been smaller.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_1",
+      "title": "Profiling React Renders at 120fps",
+      "speakerId": "sp_10",
+      "day": 1,
+      "trackId": "tr_2",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "location": "Room B",
+      "description": "Modern devices support 120Hz displays, but most React apps struggle to maintain 60fps during complex interactions. Ryan demonstrates a systematic profiling workflow using browser DevTools, React profiling tools, and custom performance marks to find and fix render bottlenecks — from expensive selectors to unnecessary re-renders to layout thrashing.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_2",
+      "title": "Video Compression for the Web: The Middle-Out Approach",
+      "speakerId": "sp_14",
+      "day": 1,
+      "trackId": "tr_2",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "location": "Room B",
+      "description": "Modern video compression on the web is stuck between bloated codecs and unacceptable quality tradeoffs. Dinesh presents Pied Piper's middle-out compression approach adapted for browser-based video delivery — achieving dramatically better compression ratios without sacrificing visual fidelity. He covers the WebCodecs API, adaptive bitrate strategies, and the real-world performance gains from rethinking how video data flows from server to screen.",
+      "highlighted": true
+    },
+    {
+      "id": "tk_3",
+      "title": "Monorepos at Scale: Lessons from 500 Packages",
+      "speakerId": "sp_3",
+      "day": 1,
+      "trackId": "tr_4",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "location": "Room D",
+      "description": "Cartwell's frontend monorepo contains over 500 packages, dozens of apps, and is contributed to by 300+ engineers daily. James shares the hard-won lessons from building and maintaining this system — from dependency management and build caching to code ownership and migration strategies that don't break everything.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_4",
+      "title": "CSS Container Queries in Production",
+      "speakerId": "sp_13",
+      "day": 1,
+      "trackId": "tr_1",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "location": "Room A",
+      "description": "Container queries have shipped in every major browser, but adoption in production remains low. Mei-Lin shares Roamly's journey of replacing hundreds of JavaScript-based responsive components with pure CSS container queries — the migration strategy, the surprising edge cases, and the performance wins that came from removing resize observers entirely.",
+      "highlighted": true
+    },
+    {
+      "id": "tk_5",
+      "title": "ARIA Patterns You're Probably Using Wrong",
+      "speakerId": "sp_7",
+      "day": 1,
+      "trackId": "tr_3",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "location": "Room C",
+      "description": "Well-intentioned ARIA usage often makes interfaces less accessible, not more. Priya walks through the most commonly misused ARIA roles and properties — live regions that fire too often, menu roles on navigation, dialog traps that trap too much — and shows how to audit and fix them using your browser's built-in accessibility tools.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_6",
+      "title": "AI-Powered Developer Tools: Hype vs. Reality",
+      "speakerId": "sp_17",
+      "day": 1,
+      "trackId": "tr_4",
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "location": "Room D",
+      "description": "AI coding assistants are everywhere, but how much do they actually help? Kwame presents data from Trackwise's internal study of AI tool adoption — what tasks they accelerate, where they introduce subtle bugs, and how his team built guardrails that let engineers use AI assistance confidently without sacrificing code quality.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_7",
+      "title": "Server-Side Rendering Without the Framework",
+      "speakerId": "sp_18",
+      "day": 2,
+      "trackId": "tr_1",
+      "startTime": "9:00",
+      "endTime": "10:00",
+      "location": "Room A",
+      "description": "What if you could get the benefits of SSR — fast first paint, SEO, progressive enhancement — without adopting a heavy meta-framework? Julia demonstrates how Dawn's built-in server and web-standard APIs make it possible to build server-rendered applications with vanilla HTML, CSS, and minimal JavaScript.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_8",
+      "title": "Eliminating Layout Shift Once and For All",
+      "speakerId": "sp_1",
+      "day": 2,
+      "trackId": "tr_2",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "location": "Room B",
+      "description": "Cumulative Layout Shift remains one of the most frustrating user experience problems on the web. Aisha breaks down the root causes — from font loading to dynamic ad injection to lazy-loaded images — and presents a systematic approach to achieving zero CLS scores using modern CSS techniques and resource hints.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_9",
+      "title": "Designing Accessible Audio Experiences",
+      "speakerId": "sp_11",
+      "day": 2,
+      "trackId": "tr_3",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "location": "Room C",
+      "description": "Audio-heavy web applications present unique accessibility challenges that go beyond alt text and captions. Fatima shares how Spectra's team redesigned the web player's interface to work seamlessly with screen readers, keyboard navigation, and alternative input devices — without compromising the rich, visual experience that sighted users expect.",
+      "highlighted": true
+    },
+    {
+      "id": "tk_10",
+      "title": "Teaching Machines to Write Code: Building Son of Anton",
+      "speakerId": "sp_6",
+      "day": 2,
+      "trackId": "tr_4",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "location": "Room D",
+      "description": "Code generation is only as good as the architecture underneath it. Gilfoyle walks through the design of Son of Anton — Pied Piper's AI-assisted code generation system — from training data curation and model architecture to the custom server infrastructure that runs it. He covers the hard tradeoffs between latency and accuracy, why most AI coding tools get context windows wrong, and the systems engineering required to make machine-generated code actually trustworthy in production.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_11",
+      "title": "Type-Safe Design Tokens Across Platforms",
+      "speakerId": "sp_4",
+      "day": 2,
+      "trackId": "tr_1",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "location": "Room A",
+      "description": "Design tokens promise a single source of truth, but the reality is messy — different platforms, different formats, different constraints. Sarah presents Tessera's approach to generating type-safe token APIs for web, iOS, and Android from a single token definition, using code generation to eliminate the drift between design and implementation.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_12",
+      "title": "Inside a Modern Bundler: An Architectural Deep Dive",
+      "speakerId": "sp_15",
+      "day": 2,
+      "trackId": "tr_2",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "location": "Room B",
+      "description": "Blaze's speed isn't magic — it's the result of deliberate architectural decisions about module resolution, dependency pre-bundling, and HMR propagation. Carlos opens the hood on the bundler's internals, explaining how native ES modules and modern compilation tools work together, and what the team is planning next.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_13",
+      "title": "Browser DevTools: Hidden Gems for CSS Debugging",
+      "speakerId": "sp_8",
+      "day": 2,
+      "trackId": "tr_4",
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "location": "Room D",
+      "description": "Your browser's developer tools contain powerful CSS debugging features that most developers don't know exist. Lucas demos the Flexbox and Grid inspectors, the font editor, the animation timeline, and the container query visualization tools — showing how each one can shave hours off common layout debugging tasks.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_14",
+      "title": "React Server Components: A Practical Deep Dive",
+      "speakerId": "sp_9",
+      "day": 3,
+      "trackId": "tr_1",
+      "startTime": "9:00",
+      "endTime": "10:00",
+      "location": "Room A",
+      "description": "Server Components promise smaller bundles and faster pages, but the mental model shift is real. Marcus cuts through the theory and focuses on the practical: when to use client vs server components, how data fetching patterns change, what happens to your existing state management, and the gotchas his team hit building real features at Nimbus.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_15",
+      "title": "Web Performance at Billion-User Scale",
+      "speakerId": "sp_19",
+      "day": 3,
+      "trackId": "tr_2",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "location": "Room B",
+      "description": "When your user base spans every device, network condition, and browser version on the planet, performance optimization looks very different. Oliver shares Crestline's approach to real-user monitoring, adaptive serving, and the INP-focused optimizations that improved interaction responsiveness for over a billion monthly users.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_16",
+      "title": "Screen Readers Deserve Better Components",
+      "speakerId": "sp_2",
+      "day": 3,
+      "trackId": "tr_3",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "location": "Room C",
+      "description": "Most component libraries claim accessibility support, but the screen reader experience often tells a different story. Naomi demonstrates real-world failures she's found in popular UI libraries, explains why they happen, and walks through the process of building components that genuinely work with assistive technologies across platforms.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_17",
+      "title": "Deploy Preview Environments That Scale",
+      "speakerId": "sp_12",
+      "day": 3,
+      "trackId": "tr_4",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "location": "Room D",
+      "description": "Every pull request deserves a live preview, but spinning up isolated environments for hundreds of daily PRs is an infrastructure challenge. Tom explains how Nimbus's preview deployment system handles ephemeral environments at scale — from instant cold starts and database branching to URL routing and automatic cleanup.",
+      "highlighted": true
+    },
+    {
+      "id": "tk_18",
+      "title": "Streaming Server Components for Instant Pages",
+      "speakerId": "sp_5",
+      "day": 3,
+      "trackId": "tr_2",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "location": "Room B",
+      "description": "Luminary's browse experience needs to feel instant despite loading personalized content from dozens of microservices. Devon reveals how his team uses streaming server components with progressive rendering to show meaningful content in under 200ms, and the architecture patterns that make selective hydration practical at their scale.",
+      "highlighted": false
+    },
+    {
+      "id": "tk_19",
+      "title": "Accessible Payment Forms That Convert",
+      "speakerId": "sp_16",
+      "day": 3,
+      "trackId": "tr_3",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "location": "Room C",
+      "description": "Paypath processes billions in payments, and every form field is a potential point of abandonment. Hannah presents hard data on how accessibility improvements to the checkout flow directly increased conversion rates — proving that accessible design isn't just the right thing to do, it's measurably better for business.",
+      "highlighted": false
+    }
+  ]
+}

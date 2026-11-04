@@ -1,0 +1,6 @@
+{
+  "name": "DEVHORIZON_26 - Responsive Conference Schedule",
+  "description": "Pixel-perfect responsive conference schedule for DEVHORIZON_26 with Desktop, Tablet, and Mobile layouts, talk filtering, and personalized agenda bookmarking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-cyber-bg: #00151d;
+  --color-cyber-card: #001a24;
+  --color-cyber-border: #133948;
+  --color-cyber-border-subtle: #0d2833;
+  --color-cyber-lime: #d2f936;
+  --color-cyber-muted: #8ea5af;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #00151d;
+  color: #f8fafc;
+}
+
+/* Custom scrollbar for cyber aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #00151d;
+}
+::-webkit-scrollbar-thumb {
+  background: #183e4e;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d2f936;
+}

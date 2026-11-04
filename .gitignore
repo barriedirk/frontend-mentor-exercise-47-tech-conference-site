@@ -1,9 +1,17 @@
+# Respaldos generados por scripts/wp.sh
+docker-wordpress/backups/
+
+# Medios subidos desde WordPress (contenido local, no código)
+docker-wordpress/wp-content/uploads/
+
+# Archivos del sistema
+.DS_Store
+
 # Design files (please do not remove 🙂)
 *.sketch
 *.fig
 *.xd
-figma/.
-
+figma/
 
 # Dependencies
 /node_modules

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevHorizon 26 - Modal de Speaker Responsivo</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =============================================================
+       FONDO DE PÁGINA DE EJEMPLO (Simulación de la conferencia)
+       ============================================================= -->
+  <header class="demo-header">
+    <div class="demo-brand">DEVHORIZON_26</div>
+    <nav class="demo-nav">
+      <a href="#home">HOME</a>
+      <a href="#schedule">SCHEDULE</a>
+      <a href="#speakers" class="active">SPEAKERS</a>
+    </nav>
+  </header>
+
+  <main class="demo-main">
+    <h1 class="demo-section-title">// speakers</h1>
+    <div class="demo-grid">
+      <!-- Tarjeta de Elena Vasquez (activadora del modal) -->
+      <article class="demo-speaker-card" onclick="openSpeakerModal()" tabindex="0" role="button" aria-label="Ver detalles de Elena Vasquez">
+        <div class="demo-speaker-img-box">
+          <img src="/src/assets/images/elena_vasquez_avatar_1793509593678.jpg" alt="Elena Vasquez" />
+        </div>
+        <div class="demo-speaker-info">
+          <h3>elena vasquez</h3>
+          <p class="role">PRINCIPAL FRONTEND ENGINEER @ BYTECRAFT</p>
+          <p class="talk-preview">THE NEXT FRONTIER OF WEB DEVELOPMENT</p>
+        </div>
+      </article>
+      
+      <p class="demo-hint">👆 Haz clic en la tarjeta o presiona el botón para abrir el modal.</p>
+      <button class="demo-trigger-btn" onclick="openSpeakerModal()">Abrir Modal de Speaker</button>
+    </div>
+  </main>
+
+  <!-- =============================================================
+       ESTRUCTURA DEL MODAL (HTML PURO Y SEMÁNTICO)
+       Centrado flexible con Flexbox + Responsivo (Mobile, Tablet, Desktop)
+       ============================================================= -->
+  <div 
+    id="speakerModal" 
+    class="modal-backdrop" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="speakerName"
+  >
+    <!-- Contenedor centrado del modal -->
+    <div class="modal-dialog">
+
+      <!-- Botón de Cierre (X) -->
+      <button 
+        type="button" 
+        class="modal-close-btn" 
+        onclick="closeSpeakerModal()" 
+        aria-label="Cerrar ventana"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+          <line x1="2" y1="2" x2="12" y2="12"></line>
+          <line x1="12" y1="2" x2="2" y2="12"></line>
+        </svg>
+      </button>
+
+      <!-- Encabezado de Perfil: Foto + Datos del Speaker -->
+      <div class="speaker-profile">
+        <div class="speaker-avatar-frame">
+          <img 
+            src="/src/assets/images/elena_vasquez_avatar_1793509593678.jpg" 
+            alt="Elena Vasquez" 
+            class="speaker-avatar"
+          />
+        </div>
+        <div class="speaker-meta">
+          <h2 id="speakerName" class="speaker-name">elena vasquez</h2>
+          <p class="speaker-role">PRINCIPAL FRONTEND ENGINEER @ BYTECRAFT</p>
+        </div>
+      </div>
+
+      <!-- Divisor horizontal -->
+      <hr class="modal-divider" />
+
+      <!-- Biografía del Speaker -->
+      <p class="speaker-bio">
+        Elena has spent the last decade pushing the boundaries of in-browser development environments. She led the browser-native IDE initiative at Bytecraft and is a frequent contributor to the TC39 process. Her work focuses on making the web platform a first-class development target.
+      </p>
+
+      <!-- Divisor horizontal -->
+      <hr class="modal-divider" />
+
+      <!-- Etiqueta de la Charla -->
+      <h3 class="talk-section-title">// TALK</h3>
+
+      <!-- Tarjeta Ticket de la Charla (Estructura Responsiva) -->
+      <div class="talk-ticket">
+        
+        <!-- Insignia KEYNOTE (Horizontal en mobile, Vertical en tablet/desktop) -->
+        <div class="ticket-badge">
+          KEYNOTE
+        </div>
+
+        <!-- Contenido Principal del Ticket (Fondo Celeste Claro) -->
+        <div class="ticket-body">
+          <h4 class="ticket-title">the next frontier of web development</h4>
+          <p class="ticket-author">
+            ELENA VASQUEZ <span class="ticket-slash">//</span> BYTECRAFT
+          </p>
+        </div>
+
+        <!-- Colilla / Stub del Ticket (Hora, Código de Barras y Favorito) -->
+        <div class="ticket-stub">
+          <div class="ticket-schedule">
+            <span class="ticket-time-main">9:00</span>
+            <span class="ticket-time-sub">10:00</span>
+          </div>
+
+          <!-- Código de barras puro (Barras con grosores variados) -->
+          <div class="ticket-barcode" aria-hidden="true">
+            <span class="bar-thick"></span>
+            <span class="bar-thin"></span>
+            <span class="bar-medium"></span>
+            <span class="bar-thin"></span>
+            <span class="bar-thick"></span>
+            <span class="bar-thin"></span>
+            <span class="bar-medium"></span>
+            <span class="bar-thick"></span>
+            <span class="bar-thin"></span>
+            <span class="bar-medium"></span>
+            <span class="bar-thick"></span>
+          </div>
+
+          <!-- Botón de guardar charla / favorito -->
+          <button 
+            type="button" 
+            class="ticket-fav-btn" 
+            onclick="toggleFavorite(this)" 
+            aria-label="Guardar en mi horario"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Script ligero para interacción del modal -->
+  <script>
+    const modal = document.getElementById('speakerModal');
+
+    function openSpeakerModal() {
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSpeakerModal() {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    // Cerrar al hacer clic en el fondo oscuro
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeSpeakerModal();
+      }
+    });
+
+    // Cerrar con la tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeSpeakerModal();
+      }
+    });
+
+    // Alternar favorito
+    function toggleFavorite(btn) {
+      btn.classList.toggle('is-saved');
+    }
+
+    // Abrir automáticamente al cargar la demo
+    window.addEventListener('DOMContentLoaded', () => {
+      openSpeakerModal();
+    });
+  </script>
+</body>
+</html>

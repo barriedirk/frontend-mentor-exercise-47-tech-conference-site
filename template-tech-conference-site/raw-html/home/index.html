@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEVHORIZON_26 — Where Code Meets The Machine</title>
+  <meta name="description" content="A three-day conference for engineers who build the interfaces humans use every day. Nov 15-17, 2026. Pier 70, SF." />
+  
+  <!-- Google Fonts: Space Grotesk & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  
+  <!-- Pure CSS Stylesheet -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="#" class="brand-logo" aria-label="DevHorizon 26 Homepage">
+        DEVHORIZON_26
+      </a>
+
+      <!-- Desktop & Tablet Navigation (Single line boxed links) -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#home" class="nav-link active">HOME</a>
+        <a href="#schedule" class="nav-link">SCHEDULE</a>
+        <a href="#speakers" class="nav-link">SPEAKERS</a>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="#home" class="nav-link active">HOME</a>
+      <a href="#schedule" class="nav-link">SCHEDULE</a>
+      <a href="#speakers" class="nav-link">SPEAKERS</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Hero Left Card (Warm Beige) -->
+          <article class="hero-main-card">
+            <div class="hero-watermark" aria-hidden="true">HORIZON</div>
+            
+            <h1 class="hero-title">
+              where code meets the machine<span class="cursor-char">_</span>
+            </h1>
+
+            <div class="hero-meta-strip">
+              <span>NOV 15-17, 2026</span>
+              <span>PIER 70, SF</span>
+            </div>
+          </article>
+
+          <!-- Hero Right Card (Featured Keynote) -->
+          <article class="hero-keynote-card">
+            <div class="keynote-content">
+              <div>
+                <div class="keynote-tag">// FEATURED KEYNOTE</div>
+                <h2 class="keynote-name">elena vasquez</h2>
+                <div class="keynote-role">PRINCIPAL FRONTEND ENGINEER @BYTECRAFT</div>
+                <h3 class="keynote-talk-title">THE NEXT FRONTIER OF WEB DEVELOPMENT</h3>
+                <div class="keynote-time">NOV 15 / 9:00 / ROOM A</div>
+              </div>
+
+              <a href="#talk-keynote" class="keynote-btn">
+                <span>VIEW TALK</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+
+            <div class="keynote-photo-wrap">
+              <img src="/speakers/keynote_elena.jpg" alt="Elena Vasquez - Featured Keynote Speaker" loading="eager" />
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKS SECTION -->
+    <section class="tracks-section" id="tracks">
+      <div class="container">
+        <span class="section-tag">// TRACKS</span>
+
+        <div class="tracks-grid">
+          <!-- Track 1: Frontend -->
+          <div class="track-card">
+            <h3 class="track-name">frontend</h3>
+            <p class="track-desc">BUILDING MODERN INTERFACES FOR THE WEB</p>
+          </div>
+
+          <!-- Track 2: Performance -->
+          <div class="track-card">
+            <h3 class="track-name">performance</h3>
+            <p class="track-desc">MAKE EVERY MILLISECOND COUNT</p>
+          </div>
+
+          <!-- Track 3: Accessibility -->
+          <div class="track-card">
+            <h3 class="track-name">accessibility</h3>
+            <p class="track-desc">BUILDING INCLUSIVE EXPERIENCES FOR EVERYONE</p>
+          </div>
+
+          <!-- Track 4: Tooling -->
+          <div class="track-card">
+            <h3 class="track-name">tooling</h3>
+            <p class="track-desc">LEVEL UP YOUR DEVELOPER WORKFLOW</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED SPEAKERS SECTION -->
+    <section class="speakers-section" id="speakers">
+      <div class="container">
+        <span class="section-tag">// FEATURED_SPEAKERS</span>
+
+        <div class="speakers-grid">
+          <!-- Speaker 1: Elena Vasquez -->
+          <article class="speaker-card">
+            <div class="speaker-photo-box">
+              <img src="/speakers/speaker_elena.jpg" alt="Elena Vasquez" loading="lazy" />
+            </div>
+            <div class="speaker-details">
+              <h3 class="speaker-name">elena vasquez</h3>
+              <p class="speaker-affiliation">PRINCIPAL FRONTEND ENGINEER @BYTECRAFT</p>
+              <div class="speaker-talk-badge">THE NEXT FRONTIER OF WEB DEVELOPMENT</div>
+            </div>
+          </article>
+
+          <!-- Speaker 2: Naomi Tanaka -->
+          <article class="speaker-card">
+            <div class="speaker-photo-box">
+              <img src="/speakers/speaker_naomi.jpg" alt="Naomi Tanaka" loading="lazy" />
+            </div>
+            <div class="speaker-details">
+              <h3 class="speaker-name">naomi tanaka</h3>
+              <p class="speaker-affiliation">ACCESSIBILITY ENGINEERING LEAD @AXION</p>
+              <div class="speaker-talk-badge">SCREEN READERS DESERVE BETTER COMPONENTS</div>
+            </div>
+          </article>
+
+          <!-- Speaker 3: James Okonkwo -->
+          <article class="speaker-card">
+            <div class="speaker-photo-box">
+              <img src="/speakers/speaker_james.jpg" alt="James Okonkwo" loading="lazy" />
+            </div>
+            <div class="speaker-details">
+              <h3 class="speaker-name">james okonkwo</h3>
+              <p class="speaker-affiliation">ENGINEERING DIRECTOR @CARTWELL</p>
+              <div class="speaker-talk-badge">MONOREPOS AT SCALE: LESSONS FROM 500 PACKAGES</div>
+            </div>
+          </article>
+
+          <!-- Speaker 4: Sarah Lindström -->
+          <article class="speaker-card">
+            <div class="speaker-photo-box">
+              <img src="/speakers/speaker_sarah.jpg" alt="Sarah Lindström" loading="lazy" />
+            </div>
+            <div class="speaker-details">
+              <h3 class="speaker-name">sarah lindstr&ouml;m</h3>
+              <p class="speaker-affiliation">DESIGN SYSTEMS LEAD @TESSERA</p>
+              <div class="speaker-talk-badge">TYPE-SAFE DESIGN TOKENS ACROSS PLATFORMS</div>
+            </div>
+          </article>
+
+          <!-- Speaker 5: Priya Sharma -->
+          <article class="speaker-card">
+            <div class="speaker-photo-box">
+              <img src="/speakers/speaker_priya.jpg" alt="Priya Sharma" loading="lazy" />
+            </div>
+            <div class="speaker-details">
+              <h3 class="speaker-name">priya sharma</h3>
+              <p class="speaker-affiliation">SENIOR DEVELOPER ADVOCATE @COBALT</p>
+              <div class="speaker-talk-badge">ARIA PATTERNS YOU'RE PROBABLY USING WRONG</div>
+            </div>
+          </article>
+
+          <!-- Speaker 6: Lucas Moreau -->
+          <article class="speaker-card">
+            <div class="speaker-photo-box">
+              <img src="/speakers/speaker_lucas.jpg" alt="Lucas Moreau" loading="lazy" />
+            </div>
+            <div class="speaker-details">
+              <h3 class="speaker-name">lucas moreau</h3>
+              <p class="speaker-affiliation">SENIOR FRONTEND ENGINEER @WEBSMITH</p>
+              <div class="speaker-talk-badge">BROWSER DEVTOOLS: HIDDEN GEMS FOR CSS DEBUGGING</div>
+            </div>
+          </article>
+
+          <!-- Speaker 7: Ryan O'Sullivan -->
+          <article class="speaker-card">
+            <div class="speaker-photo-box">
+              <img src="/speakers/speaker_ryan.jpg" alt="Ryan O'Sullivan" loading="lazy" />
+            </div>
+            <div class="speaker-details">
+              <h3 class="speaker-name">ryan o'sullivan</h3>
+              <p class="speaker-affiliation">DEVTOOLS ENGINEER @COBALT</p>
+              <div class="speaker-talk-badge">PROFILING REACT RENDERS AT 120FPS</div>
+            </div>
+          </article>
+
+          <!-- Speaker 8: Tom Kowalski -->
+          <article class="speaker-card">
+            <div class="speaker-photo-box">
+              <img src="/speakers/speaker_tom.jpg" alt="Tom Kowalski" loading="lazy" />
+            </div>
+            <div class="speaker-details">
+              <h3 class="speaker-name">tom kowalski</h3>
+              <p class="speaker-affiliation">PLATFORM ENGINEER @NIMBUS</p>
+              <div class="speaker-talk-badge">DEPLOY PREVIEW ENVIRONMENTS THAT SCALE</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-cta-wrap">
+          <button class="btn-secondary">VIEW ALL SPEAKERS</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE HIGHLIGHTS SECTION (TICKETS) -->
+    <section class="schedule-section" id="schedule">
+      <div class="container">
+        <span class="section-tag">// SCHEDULE_HIGHLIGHTS</span>
+
+        <div class="schedule-stack">
+          <!-- Ticket 1: Performance (Rose) -->
+          <article class="ticket-card ticket-rose">
+            <div class="ticket-track-side"><span>PERFORMANCE</span></div>
+            <div class="ticket-track-mobile-tag">PERFORMANCE</div>
+            
+            <div class="ticket-body">
+              <h3 class="ticket-title">video compression for the web: the middle-out approach</h3>
+              <div class="ticket-speaker">DINESH CHUGTAI // PIED PIPER</div>
+              <button class="ticket-details-toggle" type="button">+ SHOW DETAILS</button>
+            </div>
+
+            <div class="ticket-stub">
+              <div class="stub-times">
+                <div class="stub-time-main">11:00</div>
+                <div class="stub-time-sub">12:00</div>
+              </div>
+              <div class="stub-barcode" aria-hidden="true">
+                <span style="width:2px"></span><span style="width:1px"></span><span style="width:3px"></span><span style="width:2px"></span><span style="width:1px"></span><span style="width:4px"></span><span style="width:2px"></span><span style="width:1px"></span><span style="width:3px"></span><span style="width:1px"></span><span style="width:2px"></span><span style="width:4px"></span><span style="width:1px"></span>
+              </div>
+              <div class="stub-day">DAY 1</div>
+            </div>
+          </article>
+
+          <!-- Ticket 2: Frontend (Yellow) -->
+          <article class="ticket-card ticket-yellow">
+            <div class="ticket-track-side"><span>FRONTEND</span></div>
+            <div class="ticket-track-mobile-tag">FRONTEND</div>
+
+            <div class="ticket-body">
+              <h3 class="ticket-title">css container queries in production</h3>
+              <div class="ticket-speaker">MEI-LIN ZHANG // ROAMLY</div>
+              <button class="ticket-details-toggle" type="button">+ SHOW DETAILS</button>
+            </div>
+
+            <div class="ticket-stub">
+              <div class="stub-times">
+                <div class="stub-time-main">13:00</div>
+                <div class="stub-time-sub">14:00</div>
+              </div>
+              <div class="stub-barcode" aria-hidden="true">
+                <span style="width:3px"></span><span style="width:1px"></span><span style="width:2px"></span><span style="width:4px"></span><span style="width:1px"></span><span style="width:2px"></span><span style="width:3px"></span><span style="width:1px"></span><span style="width:2px"></span><span style="width:1px"></span><span style="width:4px"></span><span style="width:2px"></span>
+              </div>
+              <div class="stub-day">DAY 1</div>
+            </div>
+          </article>
+
+          <!-- Ticket 3: Accessibility (Sky Blue) -->
+          <article class="ticket-card ticket-blue">
+            <div class="ticket-track-side"><span>ACCESSIBILITY</span></div>
+            <div class="ticket-track-mobile-tag">ACCESSIBILITY</div>
+
+            <div class="ticket-body">
+              <h3 class="ticket-title">designing accessible audio experiences</h3>
+              <div class="ticket-speaker">FATIMA AL-RASHID // SPECTRA</div>
+              <button class="ticket-details-toggle" type="button">+ SHOW DETAILS</button>
+            </div>
+
+            <div class="ticket-stub">
+              <div class="stub-times">
+                <div class="stub-time-main">11:00</div>
+                <div class="stub-time-sub">12:00</div>
+              </div>
+              <div class="stub-barcode" aria-hidden="true">
+                <span style="width:1px"></span><span style="width:3px"></span><span style="width:2px"></span><span style="width:1px"></span><span style="width:4px"></span><span style="width:2px"></span><span style="width:1px"></span><span style="width:3px"></span><span style="width:2px"></span><span style="width:1px"></span><span style="width:3px"></span>
+              </div>
+              <div class="stub-day">DAY 2</div>
+            </div>
+          </article>
+
+          <!-- Ticket 4: Tooling (Lavender) -->
+          <article class="ticket-card ticket-lavender">
+            <div class="ticket-track-side"><span>TOOLING</span></div>
+            <div class="ticket-track-mobile-tag">TOOLING</div>
+
+            <div class="ticket-body">
+              <h3 class="ticket-title">deploy preview environments that scale</h3>
+              <div class="ticket-speaker">TOM KOWALSKI // NIMBUS</div>
+              <button class="ticket-details-toggle" type="button">+ SHOW DETAILS</button>
+            </div>
+
+            <div class="ticket-stub">
+              <div class="stub-times">
+                <div class="stub-time-main">12:00</div>
+                <div class="stub-time-sub">13:00</div>
+              </div>
+              <div class="stub-barcode" aria-hidden="true">
+                <span style="width:2px"></span><span style="width:2px"></span><span style="width:1px"></span><span style="width:4px"></span><span style="width:2px"></span><span style="width:1px"></span><span style="width:3px"></span><span style="width:1px"></span><span style="width:2px"></span><span style="width:4px"></span>
+              </div>
+              <div class="stub-day">DAY 3</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-cta-wrap">
+          <button class="btn-secondary">VIEW FULL SCHEDULE</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Col 1: Brand & Bio -->
+        <div class="footer-brand">
+          <div class="brand-logo">DEVHORIZON_26</div>
+          <p class="footer-desc">
+            A three-day conference for engineers who build the interfaces humans use every day.
+          </p>
+        </div>
+
+        <!-- Col 2: Navigate -->
+        <div>
+          <div class="footer-col-title">// NAVIGATE</div>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Tracks -->
+        <div>
+          <div class="footer-col-title">// TRACKS</div>
+          <ul class="footer-links">
+            <li><a href="#tracks">Frontend</a></li>
+            <li><a href="#tracks">Performance</a></li>
+            <li><a href="#tracks">Accessibility</a></li>
+            <li><a href="#tracks">Tooling</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Venue -->
+        <div>
+          <div class="footer-col-title">// VENUE</div>
+          <p class="venue-text">
+            Pier 70<br />
+            San Francisco, CA<br />
+            Nov 15&ndash;17, 2026
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 DEVHORIZON. ALL RIGHTS RESERVED.</div>
+        <a href="#top">BACK TO TOP &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simple Vanilla JS for Mobile Menu Toggle -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    if (menuToggle && mobileDrawer) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = mobileDrawer.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
+  </script>
+</body>
+</html>

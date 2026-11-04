@@ -1,0 +1,342 @@
+# ============================================================================
+#  WordPress + MariaDB + Mailpit en Docker Compose
+# ============================================================================
+#  Versiones fijadas el 2026-10-29 (últimas estables publicadas ese día):
+#    - mariadb:13.0.2                  (coincide con "latest" hoy)
+#    - wordpress:7.1.4-php8.3-apache   (coincide con "latest" hoy: WP 7.1.4 / PHP 8.3)
+#    - axllent/mailpit:v1.32.0         (capturador de correo, con build arm64)
+#  Fijarlas evita que un `docker compose pull` te cambie la base de datos o
+#  el core sin querer. Para actualizar, cambia el número y prueba en local.
+#
+#  ----------------------------------------------------------------------------
+#  CONFIGURACIÓN POR PROYECTO (.env)
+#  ----------------------------------------------------------------------------
+#  Los valores que cambian entre clientes son variables de entorno con valores
+#  por defecto, así que este mismo archivo sirve para varios proyectos.
+#  Compose lee automáticamente el `.env` que esté junto a este compose; no hay
+#  que pasar --env-file.
+#
+#  Variables disponibles (todas opcionales; entre paréntesis el defecto):
+#    COMPOSE_PROJECT_NAME  nombre del proyecto -> prefijo de volúmenes y red
+#    WP_PORT               puerto de la web en el host          (2000)
+#    DB_PORT               puerto de MySQL en el host           (3306)
+#    MAILPIT_UI_PORT       interfaz web de Mailpit              (8025)
+#    MAILPIT_SMTP_PORT     SMTP de Mailpit publicado en el host (1025)
+#    DB_NAME               nombre de la base de datos            (wordpress)
+#    DB_USER               usuario de la aplicación             (wordpress)
+#    DB_PASSWORD           contraseña de ese usuario            (example)
+#    DB_ROOT_PASSWORD      contraseña de root de MariaDB        (example)
+#
+#  IMPORTANTE:
+#   - Si cambias COMPOSE_PROJECT_NAME en un proyecto que YA tiene datos,
+#     Compose buscará volúmenes nuevos y arrancará vacío. Los antiguos siguen
+#     existiendo con el prefijo anterior.
+#   - Si cambias DB_* con el volumen ya creado, MariaDB NO actualiza las
+#     credenciales (el entrypoint solo actúa al inicializar) y WordPress deja
+#     de conectar. Cámbialas solo en instalaciones nuevas.
+#  ----------------------------------------------------------------------------
+#
+#  Ya NO se usa la línea `version: "3"`: en Compose v2 está obsoleta, Docker
+#  la ignora y avisa con un warning. El formato actual se detecta solo.
+#
+#  Conceptos clave:
+#   - Cada entrada de `services:` es un CONTENEDOR (una "máquina" aislada).
+#   - Los contenedores de este mismo archivo se ven entre sí por su NOMBRE
+#     de servicio (`mysql`), gracias a la red interna que Compose crea.
+#     Por eso ya no hace falta la vieja clave `links:` (obsoleta).
+#   - `ports:` publica un puerto hacia TU Mac. NO es necesario para que
+#     WordPress hable con la base de datos (eso pasa por la red interna).
+#   - `volumes:` guarda datos fuera del contenedor para que no se pierdan
+#     al recrearlo.
+# ============================================================================
+
+services:
+
+  # --------------------------------------------------------------------------
+  #  BASE DE DATOS
+  # --------------------------------------------------------------------------
+  mysql:
+    image: mariadb:13.0.2
+    # Versión fijada (antes: "latest", que hoy apunta a 13.0.2 igualmente).
+    # Nota: MariaDB escucha SIEMPRE en el puerto 3306 DENTRO del contenedor.
+
+    ports:
+      # Sintaxis "HOST:CONTENEDOR".
+      #   izquierda  = puerto en tu Mac (variable DB_PORT del .env)
+      #   derecha    = puerto dentro del contenedor (3306, el de MariaDB)
+      #
+      # "${DB_PORT:-3306}" = usa DB_PORT del .env y, si no existe, 3306.
+      #
+      # NOTA: se deja abierto en TODAS las interfaces (0.0.0.0) A PROPÓSITO
+      # para poder revisar la base de datos desde otro equipo de la red local
+      # (TablePlus, DBeaver, MySQL Workbench, CLI...):
+      #   mysql -h 192.168.x.x -P 3306 -u wordpress -p wordpress
+      #
+      # Si NO necesitas acceso desde la red (lo más seguro en local), cambia
+      # la línea de abajo por:
+      #   - "127.0.0.1:${DB_PORT:-3306}:3306"
+      # así solo tu propia máquina podrá conectarse.
+      #
+      # OJO: la contraseña por defecto es "example"; no expongas esto en redes
+      # públicas ni en producción.
+      - "${DB_PORT:-3306}:3306"
+      # Para un segundo proyecto en la misma máquina, pon DB_PORT=3307 en su
+      # .env. WordPress no se ve afectado: él usa el puerto INTERNO 3306.
+
+    volumes:
+      # Persiste /var/lib/mysql (los archivos reales de la base) en el volumen
+      # Docker llamado "mysql_data". Sin esto, cada `down` borraría la BD.
+      - mysql_data:/var/lib/mysql
+
+    environment:
+      # Estas variables NO son de Docker: las lee el "entrypoint" (script de
+      # arranque) que trae la imagen de MariaDB. Solo tienen efecto la PRIMERA
+      # vez que se inicializa el volumen (datadir vacío). Si el volumen ya
+      # existe, se ignoran por completo.
+      #
+      # Los valores vienen del .env (o del defecto indicado tras ":-").
+      # MYSQL_* y WORDPRESS_DB_* comparten las mismas variables a propósito:
+      # así es imposible que se desincronicen.
+
+      # Obligatoria: contraseña del usuario administrador 'root'.
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-example}
+
+      # Crea automáticamente esta base de datos al inicializar.
+      # Sin esto, WordPress pediría la base "wordpress" y no existiría
+      # ("Unknown database 'wordpress'").
+      MYSQL_DATABASE: ${DB_NAME:-wordpress}
+
+      # Crea un usuario de aplicación (además de root) y le da todos los
+      # permisos sobre MYSQL_DATABASE. Se crea como 'wordpress'@'%', es decir
+      # acepta conexiones desde cualquier contenedor de la red.
+      # Es mejor que usar root: si la web se compromete, no expones el admin.
+      MYSQL_USER: ${DB_USER:-wordpress}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-example}
+      # MYSQL_USER y MYSQL_PASSWORD deben coincidir EXACTAMENTE con las
+      # variables WORDPRESS_DB_USER / WORDPRESS_DB_PASSWORD de abajo.
+
+      # El usuario 'root' de MariaDB solo acepta conexiones desde dentro del
+      # contenedor. Si necesitas conectar como root desde la LAN, añade:
+      #   MYSQL_ROOT_HOST: "%"
+      # (solo se aplica al inicializar el volumen por primera vez).
+
+    healthcheck:
+      # OJO: "healthcheck" NO es una palabra reservada de Docker, es una
+      # CLAVE del esquema de Compose (como `ports` o `volumes`). Lo que sí es
+      # parte del motor Docker es el estado de salud del contenedor:
+      #   starting -> healthy | unhealthy
+      #
+      # ¿Por qué se implementa? Un contenedor "arrancado" no es lo mismo que
+      # "listo para aceptar conexiones". MariaDB tarda varios segundos en
+      # inicializar InnoDB la primera vez. `depends_on` normal solo espera a
+      # que el contenedor EXISTA, así que WordPress arrancaba antes de tiempo
+      # y devolvía error 500 ("Error establishing a database connection").
+      # Con healthcheck, Compose ejecuta este comando cada 5s hasta que
+      # responde bien, y WordPress solo arranca cuando está `healthy`.
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      # healthcheck.sh viene incluido en la imagen oficial de MariaDB:
+      #   --connect            -> ¿acepta conexiones ya el servidor?
+      #   --innodb_initialized -> ¿terminó de inicializar el motor InnoDB?
+      interval: 5s     # cada cuánto se ejecuta la prueba
+      timeout: 5s      # cuánto puede tardar como máximo cada prueba
+      retries: 10      # fallos consecutivos antes de marcarlo "unhealthy"
+      start_period: 30s # margen de gracia inicial: los fallos aquí no cuentan
+                        # (útil en el primer arranque, que es el más lento)
+
+    restart: unless-stopped
+    # Sin esto, al reiniciar Docker la base no volvía a arrancar y WordPress
+    # se quedaba sin conexión.
+
+  # --------------------------------------------------------------------------
+  #  WORDPRESS (Apache + PHP)
+  # --------------------------------------------------------------------------
+  wordpress:
+    image: wordpress:7.1.4-php8.3-apache
+
+    ports:
+      # http://localhost:${WP_PORT:-2000} -> Apache (80) del contenedor.
+      # Cambia WP_PORT en el .env para tener varios WordPress a la vez
+      # (2000, 2001, 2002...). Solo es configurable la parte izquierda:
+      # el puerto 80 interno es siempre el mismo.
+      - "${WP_PORT:-2000}:80"
+
+    volumes:
+      # 1) Volumen con TODO WordPress (core + wp-config.php + wp-content).
+      #    Persiste entre reinicios y permite que el entrypoint copie el core
+      #    la primera vez.
+      - mywebsite_data:/var/www/html
+
+      # 2) y 3) Bind mounts: carpetas de TU Mac montadas encima de las del
+      #    contenedor. Sirven para editar temas/plugins en tu editor y ver los
+      #    cambios al instante, sin reconstruir la imagen.
+      #    Al montarse "encima", ocultan el contenido original del volumen:
+      #    por eso ./wp-content/themes debe tener al menos un tema dentro, o
+      #    WordPress se quedará sin temas disponibles.
+      - ./wp-content/themes/:/var/www/html/wp-content/themes
+      - ./wp-content/plugins/:/var/www/html/wp-content/plugins
+
+      # 4) uploads: los medios que subas desde WordPress acaban en tu Mac,
+      #    visibles y respaldables. La carpeta debe existir en el host.
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+
+      # 5) mu-plugins: plugins "must-use" que WordPress carga siempre.
+      #    Aquí vive mailpit.php, que redirige todo el correo a Mailpit.
+      - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+
+    environment:
+      # Estas variables las lee el entrypoint de la imagen oficial de
+      # WordPress. Si no existe wp-config.php en el volumen, lo genera con
+      # la plantilla wp-config-docker.php, que hace:
+      #     define( 'DB_USER', getenv_docker('WORDPRESS_DB_USER', 'example username') );
+      # Es decir: lee la variable de entorno y, si no está definida, usa ese
+      # texto literal ("example username") como valor por defecto.
+      # Ese era el bug: al no definir WORDPRESS_DB_USER, WordPress intentaba
+      # entrar como el usuario "example username" y MariaDB respondía
+      # "Access denied for user 'example username'@'172.x.x.x'".
+      #
+      # Como wp-config.php usa getenv_docker() en tiempo de ejecución, no hay
+      # que borrarlo: basta con definir bien las variables aquí.
+
+      # Host = nombre del servicio + puerto interno de MariaDB (3306).
+      # "mysql" funciona porque Compose crea un DNS interno con ese nombre.
+      # El puerto es el INTERNO, nunca el de `ports:` del host.
+      WORDPRESS_DB_HOST: mysql:3306
+
+      # Nombre de la base. Debe existir -> la crea MYSQL_DATABASE de arriba.
+      # Sale del mismo DB_NAME del .env que usa MariaDB, para que no se
+      # desincronicen.
+      WORDPRESS_DB_NAME: ${DB_NAME:-wordpress}
+
+      # Usuario y contraseña: mismas variables DB_USER / DB_PASSWORD que
+      # MYSQL_USER / MYSQL_PASSWORD de arriba.
+      # (Aquí se podría usar root, pero es mala práctica.)
+      WORDPRESS_DB_USER: ${DB_USER:-wordpress}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-example}
+
+    depends_on:
+      # Forma larga: no solo "arráncalo antes", sino "espera a que su
+      # healthcheck diga healthy". Esto elimina la carrera del primer arranque.
+      # (La forma corta `- mysql` solo ordena el arranque, no espera a que
+      # la base esté lista.)
+      mysql:
+        condition: service_healthy
+
+    # --- DEBUG (desactivado a propósito) ---------------------------------
+    # WORDPRESS_DEBUG: "1"
+    #
+    # CUÁNDO ACTIVARLO: pantalla blanca, error 500, un plugin que no carga o
+    # avisos PHP que no aparecen en el admin. En el día a día genera mucho
+    # ruido (los plugins tiran notices) y muestra rutas internas del servidor
+    # a quien visite la web.
+    #
+    # CÓMO ACTIVARLO:
+    #   1. Descomenta la línea de arriba y ejecuta `docker compose up -d`.
+    #      No hay que borrar wp-config.php: ya contiene
+    #        define( 'WP_DEBUG', !!getenv_docker( 'WORDPRESS_DEBUG', '' ) );
+    #      y lee la variable en cada petición.
+    #   2. Para APAGARLO, vuelve a comentar la línea. No pongas "0": el "!!"
+    #      de PHP convierte cualquier texto no vacío en true.
+    #
+    # Los errores salen en la propia página. Si prefieres un archivo de log,
+    # añade a mano en wp-config.php (dentro del volumen):
+    #   define( 'WP_DEBUG_LOG', true );
+    #   define( 'WP_DEBUG_DISPLAY', false );
+    # y léelo con:
+    #   docker compose exec wordpress tail -f wp-content/debug.log
+    #
+    # Los errores de Apache/PHP también están en:
+    #   docker compose logs -f wordpress
+    #
+    # Forzar la URL (normalmente NO hace falta: WordPress la detecta sola
+    # desde la petición; solo si usas otro dominio o un proxy):
+    # WORDPRESS_CONFIG_EXTRA: |
+    #   define( 'WP_HOME', 'http://localhost:2000' );
+    #   define( 'WP_SITEURL', 'http://localhost:2000' );
+    # OJO: WORDPRESS_CONFIG_EXTRA solo se escribe al GENERAR wp-config.php;
+    # como el tuyo ya existe en el volumen, hoy no tendría efecto.
+
+    restart: unless-stopped
+    # `restart` sí es una clave de Compose que habla con el motor Docker:
+    # "unless-stopped" = reinicia si el contenedor se cae o si reinicias
+    # Docker, salvo que tú lo hayas parado a propósito (`docker compose stop`).
+
+  # --------------------------------------------------------------------------
+  #  MAILPIT (capturador de correo para desarrollo)
+  # --------------------------------------------------------------------------
+  mailpit:
+    image: axllent/mailpit:v1.32.0
+    # No envía correos a Internet: los captura y los muestra en su web.
+    # WordPress se los entrega por SMTP a mailpit:1025 (ver mu-plugin).
+
+    ports:
+      # "${MAILPIT_UI_PORT:-8025}"   -> interfaz web (http://localhost:8025)
+      # "${MAILPIT_SMTP_PORT:-1025}" -> SMTP para enviar desde tu Mac.
+      # Solo hace falta publicar el SMTP si envías desde el host (curl,
+      # Thunderbird...). Entre contenedores se usa siempre "mailpit:1025"
+      # (puerto INTERNO), así que cambiar estos valores en el .env no afecta
+      # a WordPress.
+      - "${MAILPIT_UI_PORT:-8025}:8025"
+      - "${MAILPIT_SMTP_PORT:-1025}:1025"
+
+    environment:
+      # Acepta cualquier usuario/contraseña SMTP. Útil si algún plugin
+      # insiste en autenticarse; nuestro mu-plugin no envía credenciales.
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+      # Para que los mensajes sobrevivan a un `up`/`down`, descomenta el
+      # volumen de abajo y añade aquí:  MP_DATABASE: /data/mailpit.db
+
+    # Persistencia opcional (por defecto todo vive en memoria):
+    # volumes:
+    #   - mailpit_data:/data
+
+    restart: unless-stopped
+
+# ============================================================================
+#  VOLÚMENES NOMBRADOS
+# ============================================================================
+# Se declaran aquí para que Docker los gestione (con prefijo del proyecto,
+# p. ej. "with-docker_mysql_data"). El prefijo sale de COMPOSE_PROJECT_NAME
+# del .env; si no existe, del nombre de la carpeta. Se crean automáticamente
+# al hacer `up`. `docker compose down` los conserva; `down -v` los borra.
+volumes:
+  mysql_data:      # archivos de la base de datos
+  mywebsite_data:  # archivos de WordPress dentro del contenedor
+  # mailpit_data:  # descomentar si activas la persistencia de Mailpit
+
+# ============================================================================
+#  NOTAS SI ABRES ESTE PROYECTO EN WINDOWS O LINUX
+# ============================================================================
+#  macOS (tu caso): Docker Desktop y los bind mounts funcionan tal cual.
+#
+#  LINUX (Docker Engine nativo):
+#   - WordPress corre como www-data (UID 33). Si al subir medios o instalar
+#     plugins sale "Permission denied", da permisos al UID correcto:
+#       sudo chown -R 33:33 wp-content/uploads wp-content/mu-plugins
+#     No uses chmod 777.
+#   - Fedora/RHEL/CentOS con SELinux: añade la etiqueta :z a los bind mounts,
+#     por ejemplo:
+#       ./wp-content/uploads:/var/www/html/wp-content/uploads:z
+#   - Comprueba puertos ocupados:
+#       ss -ltnp | grep -E '3306|2000|8025|1025'
+#   - Para que los contenedores vuelvan tras reiniciar la máquina:
+#       sudo systemctl enable --now docker
+#   - `host.docker.internal` NO existe por defecto en Linux. Si un contenedor
+#     necesita llegar a un servicio de tu host, añade al servicio:
+#       extra_hosts: ["host.docker.internal:host-gateway"]
+#
+#  WINDOWS:
+#   - Usa Docker Desktop con backend WSL2 y guarda el proyecto DENTRO del
+#     sistema de archivos de WSL (p. ej. ~/code/wordpress), NO en /mnt/c/...:
+#     los bind mounts sobre NTFS son muy lentos y los permisos cambian.
+#   - Si editas desde Windows, configura Git con `core.autocrlf=input` para
+#     no guardar los .php/.sh con CRLF (PHP lo tolera; los scripts no).
+#   - Los puertos configurados (WP_PORT, DB_PORT, MAILPIT_UI_PORT,
+#     MAILPIT_SMTP_PORT) deben estar libres y permitidos en el Firewall de
+#     Windows si quieres acceder desde otro equipo.
+#   - `restart: unless-stopped` solo actúa si Docker Desktop arranca con
+#     Windows.
+#
+#  EN CUALQUIER SISTEMA:
+#   - La contraseña "example" y publicar 3306 en 0.0.0.0 es SOLO para
+#     desarrollo en una red local de confianza. No lo uses en producción.

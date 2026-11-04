@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEVHORIZON_26 // Schedule</title>
+    <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Pure Vanilla CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#" class="brand-logo">DEVHORIZON_26</a>
+
+        <!-- Desktop & Tablet Navigation Links -->
+        <nav class="main-nav" aria-label="Main Navigation">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#schedule" class="nav-link active">Schedule</a>
+          <a href="#speakers" class="nav-link">Speakers</a>
+        </nav>
+
+        <!-- Mobile Hamburger Toggle Button -->
+        <button
+          class="menu-toggle"
+          aria-label="Toggle menu"
+          onclick="document.querySelector('.main-nav').classList.toggle('open')"
+        >
+          &#9776;
+        </button>
+      </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="schedule-main container">
+      <h1 class="page-title">// schedule</h1>
+
+      <!-- Filter Bar (Days & Track Pills) -->
+      <section class="filter-bar" aria-label="Schedule Filters">
+        <div class="day-group" role="group" aria-label="Conference Days">
+          <button class="btn-day active" type="button">DAY 01</button>
+          <button class="btn-day" type="button">DAY 02</button>
+          <button class="btn-day" type="button">DAY 03</button>
+        </div>
+
+        <span class="filter-divider" aria-hidden="true"></span>
+
+        <div class="track-group" role="group" aria-label="Topic Categories">
+          <button class="btn-pill" type="button">FRONTEND</button>
+          <button class="btn-pill" type="button">PERFORMANCE</button>
+          <button class="btn-pill" type="button">A11Y</button>
+          <button class="btn-pill" type="button">TOOLING</button>
+          <button class="btn-pill pill-dashed" type="button">
+            MY SCHEDULE
+          </button>
+          <button class="btn-pill pill-clear" type="button">CLEAR</button>
+        </div>
+      </section>
+
+      <!-- Schedule Ticket Cards List -->
+      <section class="schedule-list" aria-label="Schedule Sessions">
+        <!-- Card 1: Keynote (Expanded State) -->
+        <article class="ticket-card track-keynote">
+          <!-- Mobile Top Track Banner -->
+          <div class="card-track-mobile">
+            <span>KEYNOTE</span>
+          </div>
+
+          <!-- Desktop & Tablet Left Vertical Track Strip -->
+          <div class="card-track-vertical" aria-hidden="true">
+            <span>KEYNOTE</span>
+          </div>
+
+          <!-- Main Card Body -->
+          <div class="card-body">
+            <div class="card-content">
+              <h2 class="card-title">the next frontier of web development</h2>
+              <div class="card-speaker">
+                <span>ELENA VASQUEZ</span>
+                <span class="speaker-separator">//</span>
+                <span>BYTECRAFT</span>
+              </div>
+              <!-- Expanded Details -->
+              <p class="card-description">
+                The opening keynote. Elena takes the audience on a tour of the
+                web platform's most transformative recent additions — from
+                WebGPU to View Transitions to baseline support for container
+                queries. She live-demos a full-stack application running
+                entirely in the browser and makes the case that the gap between
+                native and web has never been smaller.
+              </p>
+              <div class="card-location">LOCATION: ROOM A</div>
+            </div>
+            <button class="card-toggle-btn" type="button" aria-expanded="true">
+              &mdash; HIDE DETAILS
+            </button>
+          </div>
+
+          <!-- Right / Bottom Ticket Stub -->
+          <aside class="card-stub">
+            <div class="stub-times">
+              <span class="time-start">9:00</span>
+              <span class="time-end">10:00</span>
+            </div>
+
+            <div class="stub-barcode">
+              <svg class="barcode-svg" viewBox="0 0 55 32" fill="currentColor">
+                <rect x="0" y="0" width="3" height="32" />
+                <rect x="5" y="0" width="1.5" height="32" />
+                <rect x="8" y="0" width="4" height="32" />
+                <rect x="14" y="0" width="2" height="32" />
+                <rect x="17.5" y="0" width="1.5" height="32" />
+                <rect x="21.5" y="0" width="3.5" height="32" />
+                <rect x="26.5" y="0" width="2" height="32" />
+                <rect x="30.5" y="0" width="4.5" height="32" />
+                <rect x="36.5" y="0" width="1.5" height="32" />
+                <rect x="40" y="0" width="3" height="32" />
+                <rect x="44.5" y="0" width="2" height="32" />
+                <rect x="48" y="0" width="4" height="32" />
+                <rect x="53.5" y="0" width="2" height="32" />
+              </svg>
+            </div>
+
+            <button
+              class="btn-star"
+              type="button"
+              aria-label="Bookmark session"
+            >
+              &#9734;
+            </button>
+          </aside>
+        </article>
+
+        <!-- Card 2: Performance -->
+        <article class="ticket-card track-performance">
+          <div class="card-track-mobile"><span>PERFORMANCE</span></div>
+          <div class="card-track-vertical" aria-hidden="true">
+            <span>PERFORMANCE</span>
+          </div>
+
+          <div class="card-body">
+            <div class="card-content">
+              <h2 class="card-title">profiling react renders at 120fps</h2>
+              <div class="card-speaker">
+                <span>RYAN O'SULLIVAN</span>
+                <span class="speaker-separator">//</span>
+                <span>COBALT</span>
+              </div>
+            </div>
+            <button class="card-toggle-btn" type="button" aria-expanded="false">
+              + SHOW DETAILS
+            </button>
+          </div>
+
+          <aside class="card-stub">
+            <div class="stub-times">
+              <span class="time-start">10:00</span>
+              <span class="time-end">11:00</span>
+            </div>
+            <div class="stub-barcode">
+              <svg class="barcode-svg" viewBox="0 0 55 32" fill="currentColor">
+                <rect x="0" y="0" width="3" height="32" />
+                <rect x="5" y="0" width="1.5" height="32" />
+                <rect x="8" y="0" width="4" height="32" />
+                <rect x="14" y="0" width="2" height="32" />
+                <rect x="17.5" y="0" width="1.5" height="32" />
+                <rect x="21.5" y="0" width="3.5" height="32" />
+                <rect x="26.5" y="0" width="2" height="32" />
+                <rect x="30.5" y="0" width="4.5" height="32" />
+                <rect x="36.5" y="0" width="1.5" height="32" />
+                <rect x="40" y="0" width="3" height="32" />
+                <rect x="44.5" y="0" width="2" height="32" />
+                <rect x="48" y="0" width="4" height="32" />
+                <rect x="53.5" y="0" width="2" height="32" />
+              </svg>
+            </div>
+            <button
+              class="btn-star"
+              type="button"
+              aria-label="Bookmark session"
+            >
+              &#9734;
+            </button>
+          </aside>
+        </article>
+
+        <!-- Card 3: Performance -->
+        <article class="ticket-card track-performance">
+          <div class="card-track-mobile"><span>PERFORMANCE</span></div>
+          <div class="card-track-vertical" aria-hidden="true">
+            <span>PERFORMANCE</span>
+          </div>
+
+          <div class="card-body">
+            <div class="card-content">
+              <h2 class="card-title">
+                video compression for the web: the middle-out approach
+              </h2>
+              <div class="card-speaker">
+                <span>DINESH CHUGTAI</span>
+                <span class="speaker-separator">//</span>
+                <span>PIED PIPER</span>
+              </div>
+            </div>
+            <button class="card-toggle-btn" type="button" aria-expanded="false">
+              + SHOW DETAILS
+            </button>
+          </div>
+
+          <aside class="card-stub">
+            <div class="stub-times">
+              <span class="time-start">11:00</span>
+              <span class="time-end">12:00</span>
+            </div>
+            <div class="stub-barcode">
+              <svg class="barcode-svg" viewBox="0 0 55 32" fill="currentColor">
+                <rect x="0" y="0" width="3" height="32" />
+                <rect x="5" y="0" width="1.5" height="32" />
+                <rect x="8" y="0" width="4" height="32" />
+                <rect x="14" y="0" width="2" height="32" />
+                <rect x="17.5" y="0" width="1.5" height="32" />
+                <rect x="21.5" y="0" width="3.5" height="32" />
+                <rect x="26.5" y="0" width="2" height="32" />
+                <rect x="30.5" y="0" width="4.5" height="32" />
+                <rect x="36.5" y="0" width="1.5" height="32" />
+                <rect x="40" y="0" width="3" height="32" />
+                <rect x="44.5" y="0" width="2" height="32" />
+                <rect x="48" y="0" width="4" height="32" />
+                <rect x="53.5" y="0" width="2" height="32" />
+              </svg>
+            </div>
+            <button
+              class="btn-star"
+              type="button"
+              aria-label="Bookmark session"
+            >
+              &#9734;
+            </button>
+          </aside>
+        </article>
+
+        <!-- Card 4: Tooling -->
+        <article class="ticket-card track-tooling">
+          <div class="card-track-mobile"><span>TOOLING</span></div>
+          <div class="card-track-vertical" aria-hidden="true">
+            <span>TOOLING</span>
+          </div>
+
+          <div class="card-body">
+            <div class="card-content">
+              <h2 class="card-title">
+                monorepos at scale: lessons from 500 packages
+              </h2>
+              <div class="card-speaker">
+                <span>JAMES OKONKWO</span>
+                <span class="speaker-separator">//</span>
+                <span>CARTWELL</span>
+              </div>
+            </div>
+            <button class="card-toggle-btn" type="button" aria-expanded="false">
+              + SHOW DETAILS
+            </button>
+          </div>
+
+          <aside class="card-stub">
+            <div class="stub-times">
+              <span class="time-start">12:00</span>
+              <span class="time-end">13:00</span>
+            </div>
+            <div class="stub-barcode">
+              <svg class="barcode-svg" viewBox="0 0 55 32" fill="currentColor">
+                <rect x="0" y="0" width="3" height="32" />
+                <rect x="5" y="0" width="1.5" height="32" />
+                <rect x="8" y="0" width="4" height="32" />
+                <rect x="14" y="0" width="2" height="32" />
+                <rect x="17.5" y="0" width="1.5" height="32" />
+                <rect x="21.5" y="0" width="3.5" height="32" />
+                <rect x="26.5" y="0" width="2" height="32" />
+                <rect x="30.5" y="0" width="4.5" height="32" />
+                <rect x="36.5" y="0" width="1.5" height="32" />
+                <rect x="40" y="0" width="3" height="32" />
+                <rect x="44.5" y="0" width="2" height="32" />
+                <rect x="48" y="0" width="4" height="32" />
+                <rect x="53.5" y="0" width="2" height="32" />
+              </svg>
+            </div>
+            <button
+              class="btn-star"
+              type="button"
+              aria-label="Bookmark session"
+            >
+              &#9734;
+            </button>
+          </aside>
+        </article>
+
+        <!-- Card 5: Frontend -->
+        <article class="ticket-card track-frontend">
+          <div class="card-track-mobile"><span>FRONTEND</span></div>
+          <div class="card-track-vertical" aria-hidden="true">
+            <span>FRONTEND</span>
+          </div>
+
+          <div class="card-body">
+            <div class="card-content">
+              <h2 class="card-title">css container queries in production</h2>
+              <div class="card-speaker">
+                <span>MEI-LIN ZHANG</span>
+                <span class="speaker-separator">//</span>
+                <span>ROAMLY</span>
+              </div>
+            </div>
+            <button class="card-toggle-btn" type="button" aria-expanded="false">
+              + SHOW DETAILS
+            </button>
+          </div>
+
+          <aside class="card-stub">
+            <div class="stub-times">
+              <span class="time-start">12:00</span>
+              <span class="time-end">14:00</span>
+            </div>
+            <div class="stub-barcode">
+              <svg class="barcode-svg" viewBox="0 0 55 32" fill="currentColor">
+                <rect x="0" y="0" width="3" height="32" />
+                <rect x="5" y="0" width="1.5" height="32" />
+                <rect x="8" y="0" width="4" height="32" />
+                <rect x="14" y="0" width="2" height="32" />
+                <rect x="17.5" y="0" width="1.5" height="32" />
+                <rect x="21.5" y="0" width="3.5" height="32" />
+                <rect x="26.5" y="0" width="2" height="32" />
+                <rect x="30.5" y="0" width="4.5" height="32" />
+                <rect x="36.5" y="0" width="1.5" height="32" />
+                <rect x="40" y="0" width="3" height="32" />
+                <rect x="44.5" y="0" width="2" height="32" />
+                <rect x="48" y="0" width="4" height="32" />
+                <rect x="53.5" y="0" width="2" height="32" />
+              </svg>
+            </div>
+            <button
+              class="btn-star"
+              type="button"
+              aria-label="Bookmark session"
+            >
+              &#9734;
+            </button>
+          </aside>
+        </article>
+
+        <!-- Card 6: Accessibility -->
+        <article class="ticket-card track-accessibility">
+          <div class="card-track-mobile"><span>ACCESSIBILITY</span></div>
+          <div class="card-track-vertical" aria-hidden="true">
+            <span>ACCESSIBILITY</span>
+          </div>
+
+          <div class="card-body">
+            <div class="card-content">
+              <h2 class="card-title">
+                aria patterns you're probably using wrong
+              </h2>
+              <div class="card-speaker">
+                <span>PRIYA SHARMA</span>
+                <span class="speaker-separator">//</span>
+                <span>COBALT</span>
+              </div>
+            </div>
+            <button class="card-toggle-btn" type="button" aria-expanded="false">
+              + SHOW DETAILS
+            </button>
+          </div>
+
+          <aside class="card-stub">
+            <div class="stub-times">
+              <span class="time-start">15:00</span>
+              <span class="time-end">16:00</span>
+            </div>
+            <div class="stub-barcode">
+              <svg class="barcode-svg" viewBox="0 0 55 32" fill="currentColor">
+                <rect x="0" y="0" width="3" height="32" />
+                <rect x="5" y="0" width="1.5" height="32" />
+                <rect x="8" y="0" width="4" height="32" />
+                <rect x="14" y="0" width="2" height="32" />
+                <rect x="17.5" y="0" width="1.5" height="32" />
+                <rect x="21.5" y="0" width="3.5" height="32" />
+                <rect x="26.5" y="0" width="2" height="32" />
+                <rect x="30.5" y="0" width="4.5" height="32" />
+                <rect x="36.5" y="0" width="1.5" height="32" />
+                <rect x="40" y="0" width="3" height="32" />
+                <rect x="44.5" y="0" width="2" height="32" />
+                <rect x="48" y="0" width="4" height="32" />
+                <rect x="53.5" y="0" width="2" height="32" />
+              </svg>
+            </div>
+            <button
+              class="btn-star"
+              type="button"
+              aria-label="Bookmark session"
+            >
+              &#9734;
+            </button>
+          </aside>
+        </article>
+
+        <!-- Card 7: Tooling -->
+        <article class="ticket-card track-tooling">
+          <div class="card-track-mobile"><span>TOOLING</span></div>
+          <div class="card-track-vertical" aria-hidden="true">
+            <span>TOOLING</span>
+          </div>
+
+          <div class="card-body">
+            <div class="card-content">
+              <h2 class="card-title">
+                ai-powered developer tools: hype vs. reality
+              </h2>
+              <div class="card-speaker">
+                <span>KWAME ASANTE</span>
+                <span class="speaker-separator">//</span>
+                <span>TRACKWISE</span>
+              </div>
+            </div>
+            <button class="card-toggle-btn" type="button" aria-expanded="false">
+              + SHOW DETAILS
+            </button>
+          </div>
+
+          <aside class="card-stub">
+            <div class="stub-times">
+              <span class="time-start">16:00</span>
+              <span class="time-end">17:00</span>
+            </div>
+            <div class="stub-barcode">
+              <svg class="barcode-svg" viewBox="0 0 55 32" fill="currentColor">
+                <rect x="0" y="0" width="3" height="32" />
+                <rect x="5" y="0" width="1.5" height="32" />
+                <rect x="8" y="0" width="4" height="32" />
+                <rect x="14" y="0" width="2" height="32" />
+                <rect x="17.5" y="0" width="1.5" height="32" />
+                <rect x="21.5" y="0" width="3.5" height="32" />
+                <rect x="26.5" y="0" width="2" height="32" />
+                <rect x="30.5" y="0" width="4.5" height="32" />
+                <rect x="36.5" y="0" width="1.5" height="32" />
+                <rect x="40" y="0" width="3" height="32" />
+                <rect x="44.5" y="0" width="2" height="32" />
+                <rect x="48" y="0" width="4" height="32" />
+                <rect x="53.5" y="0" width="2" height="32" />
+              </svg>
+            </div>
+            <button
+              class="btn-star"
+              type="button"
+              aria-label="Bookmark session"
+            >
+              &#9734;
+            </button>
+          </aside>
+        </article>
+      </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h2>DEVHORIZON_26</h2>
+            <p>
+              A three-day conference for engineers who build the interfaces
+              humans use every day.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h3>// NAVIGATE</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#schedule" class="active-link">Schedule</a></li>
+              <li><a href="#speakers">Speakers</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>// TRACKS</h3>
+            <ul>
+              <li><a href="#frontend">Frontend</a></li>
+              <li><a href="#performance">Performance</a></li>
+              <li><a href="#accessibility">Accessibility</a></li>
+              <li><a href="#tooling">Tooling</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>// VENUE</h3>
+            <p>Pier 70</p>
+            <p>San Francisco, CA</p>
+            <p style="color: #a4c0c8; margin-top: 0.25rem">Nov 15–17, 2026</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>&copy; 2026 DEVHORIZON. ALL RIGHTS RESERVED.</span>
+          <a href="#top" class="back-to-top">BACK TO TOP &uarr;</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

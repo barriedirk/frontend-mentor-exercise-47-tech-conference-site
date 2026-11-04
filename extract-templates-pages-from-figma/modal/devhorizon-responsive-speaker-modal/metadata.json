@@ -1,0 +1,6 @@
+{
+  "name": "DevHorizon Responsive Speaker Modal",
+  "description": "Responsive speaker detail modal with pure HTML and CSS, featuring desktop, tablet, and mobile breakpoints with ticket badge and barcode layout.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

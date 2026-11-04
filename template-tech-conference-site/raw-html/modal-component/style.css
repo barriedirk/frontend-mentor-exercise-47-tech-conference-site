@@ -1,0 +1,637 @@
+/* ==========================================================================
+   DEVHORIZON_26 - MODAL DE SPEAKER RESPONSIVO
+   Arquitectura CSS Pura, Flexible y Centrada
+   Breakpoints: Mobile (<768px), Tablet (768px - 1023px), Desktop (>=1024px)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES Y TOKENS DE DISEÑO (CSS Custom Properties)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Paleta Oscura Futurista / Cyber Tech */
+  --color-canvas: #051219;
+  --color-modal-bg: #061620;
+  --color-modal-border: #153949;
+  --color-divider: #153949;
+  
+  /* Tipografía y Acentos */
+  --color-text-primary: #ffffff;
+  --color-text-muted: #8ea8b8;
+  --color-text-role: #8faec0;
+  --color-accent-lime: #b6f338;
+  
+  /* Ticket de Charla (Keynote Ticket) */
+  --color-ticket-bg: #bcf1f6;
+  --color-ticket-text: #05141d;
+  --color-ticket-badge-bg: #071922;
+  --color-ticket-badge-text: #ffffff;
+  
+  /* Fuentes */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  
+  /* Transiciones */
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET BÁSICO Y ESTILOS GLOBALES
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   3. BACKDROP DEL MODAL (CENTRADO FLEXIBLE Y CONTROL DE DESBORDAMIENTO)
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(3, 11, 16, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* Centrado Flexible con Flexbox */
+  display: flex;
+  align-items: center;      /* Centrado vertical */
+  justify-content: center;   /* Centrado horizontal */
+  
+  /* Gestión de scroll en pantallas con baja altura de viewport */
+  overflow-y: auto;
+  padding: 16px;
+  box-sizing: border-box;
+  z-index: 1000;
+  
+  /* Estado de visibilidad para animación */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+
+/* Clase activa para mostrar el modal */
+.modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   4. CONTENEDOR DEL MODAL (DIALOG)
+   -------------------------------------------------------------------------- */
+.modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  background-color: var(--color-modal-bg);
+  border: 1px solid var(--color-modal-border);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+  padding: 24px 20px 24px 20px;
+  margin: auto; /* Mantiene el centrado vertical en flexbox al haber scroll */
+  
+  /* Animación de entrada con aceleración por hardware */
+  transform: translateY(12px) scale(0.985);
+  transition: transform var(--transition-fast);
+}
+
+.modal-backdrop.is-open .modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   5. BOTÓN DE CIERRE (X)
+   -------------------------------------------------------------------------- */
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+}
+
+.modal-close-btn:focus-visible {
+  outline: 2px solid var(--color-accent-lime);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   6. SECCIÓN DE PERFIL DEL SPEAKER (FOTO + NOMBRE + CARGO)
+   Mobile First: Distribución vertical apilada
+   -------------------------------------------------------------------------- */
+.speaker-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.speaker-avatar-frame {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  background-color: #8ed3e8;
+  border: 1px solid var(--color-modal-border);
+  overflow: hidden;
+  position: relative;
+}
+
+.speaker-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.speaker-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.speaker-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.speaker-role {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-role);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   7. LÍNEAS SEPARADORAS HORIZONTALES
+   -------------------------------------------------------------------------- */
+.modal-divider {
+  border: none;
+  height: 1px;
+  background-color: var(--color-divider);
+  margin: 18px 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. BIOGRAFÍA
+   -------------------------------------------------------------------------- */
+.speaker-bio {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   9. SECCIÓN TALK & TARJETA TICKET
+   -------------------------------------------------------------------------- */
+.talk-section-title {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-accent-lime);
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+/* Tarjeta Ticket (Mobile: Apilada Verticalmente) */
+.talk-ticket {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-modal-border);
+  background-color: var(--color-ticket-bg);
+  color: var(--color-ticket-text);
+  overflow: hidden;
+}
+
+/* Insignia Superior KEYNOTE en Mobile */
+.ticket-badge {
+  background-color: var(--color-ticket-badge-bg);
+  color: var(--color-ticket-badge-text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-align: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-modal-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cuerpo Principal del Ticket */
+.ticket-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ticket-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--color-ticket-text);
+  letter-spacing: -0.01em;
+}
+
+.ticket-author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #173847;
+  text-transform: uppercase;
+}
+
+.ticket-slash {
+  color: #4a7587;
+  margin: 0 4px;
+}
+
+/* Colilla inferior en Mobile: Fila con hora, código de barras y botón estrella */
+.ticket-stub {
+  border-top: 1.5px dashed var(--color-ticket-text);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: var(--color-ticket-bg);
+}
+
+.ticket-schedule {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+
+.ticket-time-main {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.ticket-time-sub {
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 2px;
+  opacity: 0.85;
+}
+
+/* Código de Barras Realista */
+.ticket-barcode {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  gap: 2px;
+}
+
+.ticket-barcode span {
+  display: inline-block;
+  height: 100%;
+  background-color: var(--color-ticket-text);
+}
+
+.bar-thin { width: 1.5px; }
+.bar-medium { width: 3.5px; }
+.bar-thick { width: 5.5px; }
+
+/* Botón Favorito / Guardar */
+.ticket-fav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-ticket-text);
+  border: 1.5px solid var(--color-ticket-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ticket-fav-btn:hover {
+  background-color: rgba(5, 20, 29, 0.15);
+  transform: scale(1.06);
+}
+
+.ticket-fav-btn.is-saved {
+  background-color: var(--color-ticket-text);
+  color: var(--color-ticket-bg);
+}
+
+/* ==========================================================================
+   BREAKPOINTS RESPONSIVOS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   TABLET (min-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  .modal-dialog {
+    max-width: 660px;
+    padding: 28px 28px 24px 28px;
+  }
+
+  /* El perfil pasa a ser fila horizontal con foto al lado del nombre */
+  .speaker-profile {
+    flex-direction: row;
+    align-items: center;
+    gap: 22px;
+    padding-right: 50px; /* Evita solapamiento con el botón X */
+  }
+
+  .speaker-avatar-frame {
+    width: 120px;
+    height: 120px;
+  }
+
+  .speaker-name {
+    font-size: 27px;
+  }
+
+  .speaker-role {
+    font-size: 11.5px;
+    margin-top: 4px;
+  }
+
+  .speaker-bio {
+    font-size: 13.5px;
+  }
+
+  /* EL TICKET CAMBIA A DISPOSICIÓN HORIZONTAL (3 COLUMNAS FLEX) */
+  .talk-ticket {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  /* Badge KEYNOTE a la izquierda, vertical rotado */
+  .ticket-badge {
+    border-bottom: none;
+    border-right: 1px solid var(--color-modal-border);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    padding: 16px 12px;
+    white-space: nowrap;
+    width: 38px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+
+  /* Cuerpo Central del Ticket */
+  .ticket-body {
+    flex: 1;
+    padding: 20px 22px;
+    justify-content: center;
+  }
+
+  .ticket-title {
+    font-size: 22px;
+  }
+
+  .ticket-author {
+    font-size: 11.5px;
+  }
+
+  /* Colilla Derecha: Columna Vertical separada por línea punteada */
+  .ticket-stub {
+    border-top: none;
+    border-left: 1.5px dashed var(--color-ticket-text);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 125px;
+    padding: 16px 12px;
+    gap: 10px;
+    box-sizing: border-box;
+  }
+
+  .ticket-schedule {
+    text-align: center;
+    align-items: center;
+  }
+
+  .ticket-barcode {
+    height: 32px;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   DESKTOP (min-width: 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .modal-dialog {
+    max-width: 720px;
+    padding: 32px 32px 28px 32px;
+  }
+
+  .speaker-avatar-frame {
+    width: 130px;
+    height: 130px;
+  }
+
+  .speaker-name {
+    font-size: 29px;
+  }
+
+  .speaker-role {
+    font-size: 12px;
+  }
+
+  .ticket-badge {
+    width: 42px;
+    font-size: 11.5px;
+  }
+
+  .ticket-body {
+    padding: 24px 26px;
+  }
+
+  .ticket-title {
+    font-size: 24px;
+  }
+
+  .ticket-stub {
+    width: 135px;
+    padding: 18px 14px;
+  }
+
+  .ticket-time-main {
+    font-size: 20px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ESTILOS DE LA PÁGINA DEMO DE FONDO (Para contexto visual)
+   -------------------------------------------------------------------------- */
+.demo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid #0f2b38;
+}
+
+.demo-brand {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: #38a169;
+  letter-spacing: 0.05em;
+}
+
+.demo-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.demo-nav a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #64748b;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid #143542;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+}
+
+.demo-nav a.active, .demo-nav a:hover {
+  color: #ffffff;
+  border-color: #2a6983;
+}
+
+.demo-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 20px 80px 20px;
+}
+
+.demo-section-title {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: #276749;
+  margin-bottom: 24px;
+}
+
+.demo-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.demo-speaker-card {
+  background-color: #071922;
+  border: 1px solid #143542;
+  width: 100%;
+  max-width: 380px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.demo-speaker-card:hover {
+  transform: translateY(-4px);
+  border-color: #2a6983;
+}
+
+.demo-speaker-img-box {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background-color: #8ed3e8;
+  overflow: hidden;
+}
+
+.demo-speaker-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.demo-speaker-info {
+  padding: 16px;
+}
+
+.demo-speaker-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.demo-speaker-info .role {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-role);
+  margin-top: 4px;
+}
+
+.demo-speaker-info .talk-preview {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-accent-lime);
+  margin-top: 12px;
+}
+
+.demo-hint {
+  font-size: 13px;
+  color: #64748b;
+  text-align: center;
+}
+
+.demo-trigger-btn {
+  background-color: var(--color-accent-lime);
+  color: #05141d;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: opacity var(--transition-fast);
+}
+
+.demo-trigger-btn:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Responsive Design to HTML & CSS",
+  "description": "Convert desktop, tablet, and mobile design mockups into pixel-accurate, pure responsive HTML and CSS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

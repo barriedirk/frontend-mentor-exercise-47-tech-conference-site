@@ -1,0 +1,6 @@
+{
+  "name": "DEVHORIZON_26 - Responsive Conference Speakers Page",
+  "description": "Pixel-perfect responsive web page for DEVHORIZON_26 developer conference speakers across desktop, tablet, and mobile breakpoints.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
