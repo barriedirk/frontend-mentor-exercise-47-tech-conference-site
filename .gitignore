@@ -12,6 +12,7 @@ docker-wordpress/wp-content/uploads/
 *.fig
 *.xd
 figma/
+.zip
 
 # Dependencies
 /node_modules
