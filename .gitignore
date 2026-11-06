@@ -50,3 +50,5 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 tech-conference-site-figma.zip
+
+/aws
